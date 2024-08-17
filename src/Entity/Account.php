@@ -44,6 +44,12 @@ class Account
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
+    #[ORM\OneToOne(mappedBy: 'account', cascade: ['persist', 'remove'])]
+    private ?Sitter $sitter = null;
+
+    #[ORM\OneToOne(mappedBy: 'account', cascade: ['persist', 'remove'])]
+    private ?UserParent $userParent = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,6 +135,40 @@ class Account
     public function setUpdatedAt(\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getSitter(): ?Sitter
+    {
+        return $this->sitter;
+    }
+
+    public function setSitter(Sitter $sitter): static
+    {
+        // set the owning side of the relation if necessary
+        if ($sitter->getAccount() !== $this) {
+            $sitter->setAccount($this);
+        }
+
+        $this->sitter = $sitter;
+
+        return $this;
+    }
+
+    public function getUserParent(): ?UserParent
+    {
+        return $this->userParent;
+    }
+
+    public function setUserParent(UserParent $userParent): static
+    {
+        // set the owning side of the relation if necessary
+        if ($userParent->getAccount() !== $this) {
+            $userParent->setAccount($this);
+        }
+
+        $this->userParent = $userParent;
 
         return $this;
     }

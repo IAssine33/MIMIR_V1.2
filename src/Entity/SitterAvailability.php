@@ -39,6 +39,9 @@ class SitterAvailability
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sitterAvailabilities')]
+    private ?Sitter $sitter = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +115,18 @@ class SitterAvailability
     public function setUpdatedAt(\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getSitter(): ?Sitter
+    {
+        return $this->sitter;
+    }
+
+    public function setSitter(?Sitter $sitter): static
+    {
+        $this->sitter = $sitter;
 
         return $this;
     }

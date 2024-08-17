@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SitterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,6 +48,32 @@ class Sitter
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
+
+    /**
+     * @var Collection<int, Work>
+     */
+    #[ORM\OneToMany(targetEntity: Work::class, mappedBy: 'sitter', orphanRemoval: true)]
+    private Collection $works;
+
+    #[ORM\OneToOne(inversedBy: 'sitter', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Account $account = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sitters')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?City $city = null;
+
+    /**
+     * @var Collection<int, SitterAvailability>
+     */
+    #[ORM\OneToMany(targetEntity: SitterAvailability::class, mappedBy: 'sitter')]
+    private Collection $sitterAvailabilities;
+
+    public function __construct()
+    {
+        $this->works = new ArrayCollection();
+        $this->sitterAvailabilities = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +208,90 @@ class Sitter
     public function setUpdatedAt(\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Work>
+     */
+    public function getWorks(): Collection
+    {
+        return $this->works;
+    }
+
+    public function addWork(Work $work): static
+    {
+        if (!$this->works->contains($work)) {
+            $this->works->add($work);
+            $work->setSitter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWork(Work $work): static
+    {
+        if ($this->works->removeElement($work)) {
+            // set the owning side to null (unless already changed)
+            if ($work->getSitter() === $this) {
+                $work->setSitter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAccount(): ?Account
+    {
+        return $this->account;
+    }
+
+    public function setAccount(Account $account): static
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setCity(?City $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SitterAvailability>
+     */
+    public function getSitterAvailabilities(): Collection
+    {
+        return $this->sitterAvailabilities;
+    }
+
+    public function addSitterAvailability(SitterAvailability $sitterAvailability): static
+    {
+        if (!$this->sitterAvailabilities->contains($sitterAvailability)) {
+            $this->sitterAvailabilities->add($sitterAvailability);
+            $sitterAvailability->setSitter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSitterAvailability(SitterAvailability $sitterAvailability): static
+    {
+        if ($this->sitterAvailabilities->removeElement($sitterAvailability)) {
+            // set the owning side to null (unless already changed)
+            if ($sitterAvailability->getSitter() === $this) {
+                $sitterAvailability->setSitter(null);
+            }
+        }
 
         return $this;
     }
