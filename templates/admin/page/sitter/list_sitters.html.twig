@@ -1,0 +1,61 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block main %}
+    <h1>Les Nounous : </h1>
+
+    <section class="">
+
+        <a href="">Ajouter une Nounou</a>
+
+
+        <table border="1" width="100%">
+            <tr>
+                <td>Id</td>
+                <td>Prénom</td>
+                <td>Nom</td>
+                <td>Date de creation</td>
+                <td>Est publié ?</td>
+                <td>Actions</td>
+            </tr>
+
+
+            {% for sitter in sitters %}
+                <tr>
+                    <td>{{ sitter.id }}</td>
+                    <td>{{ sitter.account.firstname }}</td>
+                    <td>{{ sitter.account.lastname }}</td>
+                    <td>{{ sitter.createdAt | date('d-m-Y H:i') }}</td>
+                   {#
+                    <td>
+                        {% if sitter.isPublished %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p>
+                        {% endif %}
+
+                    </td>
+                   #}
+                    {#
+                    <td>
+                        <a href="{{ path('admin_update_sitter', {id: sitter.id}) }}">Mettre à jour</a>
+
+
+                        <div class="admin-sitter-popup-delete" data-sitter-popup-target-id="{{ sitter.id }}">
+                            <p>Voulez vous vraiment supprimer ?</p>
+
+                            <a href="{{ path('admin_delete_sitter', {id: sitter.id}) }}">Supprimer</a>
+                        </div>
+
+                        <p data-sitter-trigger-id="{{ sitter.id }}" class="js-admin-sitter-delete">Supprimer</p>
+
+
+                    </td>
+                    #}
+                </tr>
+            {% endfor %}
+        </table>
+
+
+    </section>
+
+
+{% endblock %}

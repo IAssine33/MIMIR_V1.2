@@ -1,0 +1,36 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block main %}
+
+    <h1> Créer une nouvelle nounou : </h1>
+
+    <div class="formWrapper">
+        {{
+            form_start(sitterForm)
+        }}
+        <div class="row">
+            <div class="col-4">
+                {{ form_row(sitterForm.bio) }}
+            </div>
+            <div class="col-4">
+                {{ form_row(sitterForm.availability) }}
+            </div>
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                {{ form_row(sitterForm.civility) }}
+            </div>
+        </div>
+        {{    form_end(sitterForm)    }}
+    </div>
+
+
+    {#
+    {{ form_row(sitterForm.account.firstname) }}
+    {{ form_row(sitterForm.account.lastname) }}
+    {{ form_row(sitterForm.account.email) }}
+    #}
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    {{ form_end(sitterForm) }}
+
+{% endblock %}

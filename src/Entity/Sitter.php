@@ -73,6 +73,10 @@ class Sitter
     {
         $this->works = new ArrayCollection();
         $this->sitterAvailabilities = new ArrayCollection();
+        /*
+        $this->created_at = new \DateTime('NOW');
+        $this->updated_at = new \DateTime('NOW');
+        */
     }
 
     public function getId(): ?int

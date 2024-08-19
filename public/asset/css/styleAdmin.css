@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+#logo_MIMIR{
+    font-family: "Baloo Tammudu 2", sans-serif;
+    color: rgba(218, 137, 130, 1);
+    margin-left: 100px;
+}
+
+#bg_navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(80, 111, 144, 1);
+
+}
+
+.flex{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-right: 20px;
+}
+
+.white{
+    color: #E6EBE6;
+}
+
+main{
+    background-color: rgb(255, 255, 255);
+    height: 90vh;
+}
+
+.formWrapper{
+    width:50%!important;
+    margin:auto!important;
+}
