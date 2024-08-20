@@ -1,0 +1,43 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block main %}
+
+    <h1> Créez votre compte : </h1>
+
+    <div class="formWrapper">
+        {{
+        form_start(accountForm)
+        }}
+        <div class="row">
+            <div class="col-4">
+                {{ form_row(accountForm.firstname) }}
+            </div>
+            <div class="col-4">
+                {{ form_row(accountForm.lastname) }}
+            </div>
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                {{ form_row(accountForm.email) }}
+            </div>
+            <div class="col-4">
+                {{ form_row(accountForm.password) }}
+            </div>
+            <div class="col-4">
+                {{ form_rest(accountForm) }}
+
+            </div>
+        </div>
+
+    </div>
+
+
+    {#
+    {{ form_row(sitterForm.account.firstname) }}
+    {{ form_row(sitterForm.account.lastname) }}
+    {{ form_row(sitterForm.account.email) }}
+    #}
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    {{    form_end(accountForm)    }}
+
+{% endblock %}

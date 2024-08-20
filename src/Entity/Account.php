@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\AccountRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AccountRepository::class)]
-class Account implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class Account implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -49,6 +51,11 @@ class Account implements \Symfony\Component\Security\Core\User\PasswordAuthentic
 
     #[ORM\OneToOne(mappedBy: 'account', cascade: ['persist', 'remove'])]
     private ?UserParent $userParent = null;
+
+    public function __construct() {
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -103,7 +110,7 @@ class Account implements \Symfony\Component\Security\Core\User\PasswordAuthentic
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): array
     {
         return $this->roles;
     }
@@ -172,4 +179,24 @@ class Account implements \Symfony\Component\Security\Core\User\PasswordAuthentic
 
         return $this;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
 }

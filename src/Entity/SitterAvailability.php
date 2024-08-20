@@ -42,6 +42,10 @@ class SitterAvailability
     #[ORM\ManyToOne(inversedBy: 'sitterAvailabilities')]
     private ?Sitter $sitter = null;
 
+    public function __construct() {
+        $this->updated_at = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

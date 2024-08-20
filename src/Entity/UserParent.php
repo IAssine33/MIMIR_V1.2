@@ -28,7 +28,7 @@ class UserParent
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $updeated_at = null;
+    private ?\DateTimeImmutable $updated_at = null;
 
     /**
      * @var Collection<int, Work>
@@ -47,6 +47,8 @@ class UserParent
     public function __construct()
     {
         $this->works = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -104,12 +106,12 @@ class UserParent
 
     public function getUpdeatedAt(): ?\DateTimeImmutable
     {
-        return $this->updeated_at;
+        return $this->updated_at;
     }
 
     public function setUpdeatedAt(\DateTimeImmutable $updeated_at): static
     {
-        $this->updeated_at = $updeated_at;
+        $this->updated_at = $updeated_at;
 
         return $this;
     }

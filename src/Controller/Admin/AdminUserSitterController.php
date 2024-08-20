@@ -22,7 +22,7 @@ class AdminUserSitterController extends AbstractController
 
 
 
-        return $this->render('admin/page/sitter/add_sitter.html.twig', ['sitterForm' => $sitterForm->createView(),]);
+        return $this->render('admin/page/sitter/edit_sitter.html.twig', ['sitterForm' => $sitterForm->createView(),]);
     }
 
 }

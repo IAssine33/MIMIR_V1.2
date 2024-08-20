@@ -23,7 +23,7 @@ class UserParentType extends AbstractType
                     'widget' => 'single_text',
                 ])
 
-                ->add('updeated_at', null, [
+                ->add('updated_at', null, [
                     'widget' => 'single_text',
                 ])
             */
