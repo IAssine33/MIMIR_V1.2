@@ -46,7 +46,7 @@ class AccountController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/sitter/update/{id}', name: 'sitter_update')]
+    #[Route('/sitter/update/{id}', name: 'sitter_update')]
     public function updateSitter(?int $id, Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
         $sitter = $sitterRepository->find($id);

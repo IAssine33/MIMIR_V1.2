@@ -1,0 +1,15 @@
+{% extends 'public/basePublic.html.twig' %}
+
+
+{% block main %}
+    <h1>Nos Nounous pour vos MIMIR: </h1>
+    {% for sitter in sitters %}
+        {{ sitter.account.firstname }}
+        {{ sitter.account.lastname }}
+        {% set now = date() %}
+        {% set age = now|date_diff(sitter.borned_at).y %}
+
+        <p>Age: {{ age }} ans</p>
+    {% endfor %}
+
+{% endblock %}

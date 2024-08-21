@@ -20,6 +20,9 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+
+                # Permet de pouvoir faire une redirection avec le login au securityController
+                default_target_path: app_login
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -35,7 +38,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/nounou, roles: ROLE_SITTER }
+         - { path: ^/sitter, roles: ROLE_SITTER }
          - { path: ^/parent, roles: ROLE_PARENT }
 
 when@test:
