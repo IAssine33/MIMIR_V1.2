@@ -2,11 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Account;
 
-use App\Form\AccountType;
+
+use App\Entity\User;
+use App\Form\UserType;
 use App\Form\SitterType;
 use App\Repository\SitterRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,35 +18,48 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
-class AccountController extends AbstractController
+class UserController extends AbstractController
 {
-    #[Route('/account/new', name: 'account_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+
+    #[Route('/user/new', name: 'user_new')]
+    public function newSitter(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
-        $account = new Account();
-        $accountForm = $this->createForm(AccountType::class, $account);
-        $accountForm->handleRequest($request);
+        $user = new User();
+        $userForm = $this->createForm(UserType::class, $user);
+        $userForm->handleRequest($request);
 
 
-        if ($accountForm->isSubmitted() && $accountForm->isValid()) {
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
 
-            $password = $accountForm->get('password')->getData();
+            $password = $userForm->get('password')->getData();
 
-            $hashedPassword = $passwordHasher->hashPassword($account, $password);
-            $account->setPassword($hashedPassword);
+            $hashedPassword = $passwordHasher->hashPassword($user, $password);
+            $user->setPassword($hashedPassword);
 
-            // Persister l'entité Account
-            $entityManager->persist($account);
-            $entityManager->flush();
+            try{
+
+                //$user->setRoles(['ROLE_SITTER']);
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }catch (\Exception $e){
+                return $this->render('admin/errors/error-404.html.twig', [
+                    'error' => $e->getMessage(),
+                ]);
+            }
+            // Persister l'entité user
+
 
             // Rediriger vers la page de connexion
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('admin/page/account/newAccount.html.twig', [
-            'accountForm' => $accountForm->createView(),
+
+        return $this->render('admin/page/user/newUser.html.twig', [
+            "userForm" =>  $userForm,
         ]);
     }
+
+
 
     #[Route('/sitter/update/{id}', name: 'sitter_update')]
     public function updateSitter(?int $id, Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, UserPasswordHasherInterface $passwordHasher): Response
@@ -73,13 +88,10 @@ class AccountController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'modification du Nounou enregistrée');
-
-
         }
 
         return $this->render('admin/page/sitter/edit_sitter.html.twig', [
             'sitterForm' => $sitterForm->createView(),
-
         ]);
     }
 

@@ -5,26 +5,26 @@
     <h1> Créez votre compte : </h1>
 
     <div class="formWrapper">
+{#  #}
         {{
-        form_start(accountForm)
+         form_start(userForm)
         }}
         <div class="row">
             <div class="col-4">
-                {{ form_row(accountForm.firstname) }}
+                {{ form_row(userForm.firstname) }}
             </div>
             <div class="col-4">
-                {{ form_row(accountForm.lastname) }}
+                {{ form_row(userForm.lastname) }}
             </div>
             <div class="col-4">
             </div>
             <div class="col-4">
-                {{ form_row(accountForm.email) }}
+                {{ form_row(userForm.email) }}
             </div>
             <div class="col-4">
-                {{ form_row(accountForm.password) }}
+                {{ form_row(userForm.password) }}
             </div>
             <div class="col-4">
-                {{ form_rest(accountForm) }}
 
             </div>
         </div>
@@ -33,11 +33,11 @@
 
 
     {#
-    {{ form_row(sitterForm.account.firstname) }}
-    {{ form_row(sitterForm.account.lastname) }}
-    {{ form_row(sitterForm.account.email) }}
+    {{ form_row(sitterForm.user.firstname) }}
+    {{ form_row(sitterForm.user.lastname) }}
+    {{ form_row(sitterForm.user.email) }}
     #}
-    <button type="submit" class="btn btn-primary">Sauvegarder</button>
-    {{    form_end(accountForm)    }}
+
+    {{    form_end(userForm)    }}
 
 {% endblock %}

@@ -55,9 +55,6 @@ class Sitter
     #[ORM\OneToMany(targetEntity: Work::class, mappedBy: 'sitter', orphanRemoval: true)]
     private Collection $works;
 
-    #[ORM\OneToOne(inversedBy: 'sitter', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Account $account = null;
 
     #[ORM\ManyToOne(inversedBy: 'sitters')]
     #[ORM\JoinColumn(nullable: false)]
@@ -68,6 +65,11 @@ class Sitter
      */
     #[ORM\OneToMany(targetEntity: SitterAvailability::class, mappedBy: 'sitter')]
     private Collection $sitterAvailabilities;
+
+    #[ORM\OneToOne(inversedBy: 'sitter', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
 
     public function __construct()
     {
@@ -244,18 +246,6 @@ class Sitter
         return $this;
     }
 
-    public function getAccount(): ?Account
-    {
-        return $this->account;
-    }
-
-    public function setAccount(Account $account): static
-    {
-        $this->account = $account;
-
-        return $this;
-    }
-
     public function getCity(): ?City
     {
         return $this->city;
@@ -297,4 +287,17 @@ class Sitter
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }

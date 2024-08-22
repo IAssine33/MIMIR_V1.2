@@ -4,12 +4,11 @@
 {% block main %}
     <h1>Nos Nounous pour vos MIMIR: </h1>
     {% for sitter in sitters %}
-        {{ sitter.account.firstname }}
-        {{ sitter.account.lastname }}
-        {% set now = date() %}
-        {% set age = now|date_diff(sitter.borned_at).y %}
-
-        <p>Age: {{ age }} ans</p>
+        {{ sitter.user.firstname }}
+        {{ sitter.user.lastname }}
+      {#   <p>Date de naissance : {{ sitter.bornedAt|date('d/m/Y') }}</p>
+        <p>Âge : {{ (date()|date('Y') - sitter.bornedAt('Y')) }} ans</p>
+      #}
     {% endfor %}
 
 {% endblock %}

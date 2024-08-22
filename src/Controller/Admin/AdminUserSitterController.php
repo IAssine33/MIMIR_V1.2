@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class AdminUserSitterController extends AbstractController
 {
-    #[Route('/admin/user/sitter/insert', name: 'admin_sitter')]
+    #[Route('/user/sitter/insert', name: 'admin_sitter')]
     function insertAdmin( Request $request): Response
     {
 

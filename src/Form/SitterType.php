@@ -34,7 +34,7 @@ class SitterType extends AbstractType
                 'widget' => 'single_text',
             ])
         */
-            ->add('account', EntityType::class, [
+            ->add('user', EntityType::class, [
                 'class' => Account::class,
                 'choice_label' => 'id',
             ])

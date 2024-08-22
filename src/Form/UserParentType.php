@@ -31,7 +31,7 @@ class UserParentType extends AbstractType
                 'class' => City::class,
                 'choice_label' => 'id',
             ])
-            ->add('account', EntityType::class, [
+            ->add('user', EntityType::class, [
                 'class' => Account::class,
                 'choice_label' => 'id',
             ])
