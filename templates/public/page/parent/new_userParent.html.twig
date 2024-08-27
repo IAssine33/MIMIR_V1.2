@@ -1,0 +1,41 @@
+{% extends 'public/basePublic.html.twig' %}
+
+{% block main %}
+    <section class="flex">
+        <article class="blocArticle">
+            <h1> Créez votre compte : </h1>
+
+            <div class="formWrapper">
+                {#  #}
+                {{
+                form_start(userForm)
+                }}
+                <div class="row">
+                    {#
+                    <div class="col-4">
+                        {{ form_row(userForm.firstname) }}
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(userForm.lastname) }}
+                    </div>
+                    #}
+                    <div class="col-4">
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(userForm.email) }}
+                    </div>
+                    <div class="col-4">
+                        {{ form_row(userForm.password) }}
+                    </div>
+                    <div class="col-4">
+
+                    </div>
+                </div>
+
+            </div>
+
+            {{    form_end(userForm)    }}
+        </article>
+    </section>
+
+{% endblock %}

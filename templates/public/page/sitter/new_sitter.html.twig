@@ -1,0 +1,53 @@
+{% extends 'public/basePublic.html.twig' %}
+
+{% block main %}
+
+    <h1> Créer une nouvelle nounou : </h1>
+
+    <div class="formWrapper">
+        {{ form_start(sitterForm) }}
+        <div class="row">
+            <div class="col-2">
+                {{ form_row(sitterForm.civility) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.bio) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.borned_at) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.availability) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.languages) }}
+            </div>
+            <div class="col-2">
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.certifications) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.photo_url) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.contact_info) }}
+            </div>
+            <div class="col-2">
+                {{ form_row(sitterForm.save) }}
+            </div>
+
+        </div>
+        {{    form_end(sitterForm)    }}
+    </div>
+
+
+    {#
+    {{ form_row(sitterForm.user.firstname) }}
+    {{ form_row(sitterForm.user.lastname) }}
+    {{ form_row(sitterForm.user.email) }}
+    #}
+
+
+
+{% endblock %}

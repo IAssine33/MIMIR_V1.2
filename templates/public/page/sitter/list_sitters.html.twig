@@ -1,11 +1,12 @@
-{% extends 'admin/baseAdmin.html.twig' %}
+{% extends 'public/basePublic.html.twig' %}
 {% block main %}
     <h1>Les Nounous : </h1>
 
     <section class="">
 
         <a href="">Ajouter une Nounou</a>
-
+       <a href="{{ path('sitter_update') }}">Modifier</a>
+        <a href="{{ path('sitter_delete') }}">Supprimer</a>
 
         <table border="1" width="100%">
             <tr>

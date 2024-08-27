@@ -14,7 +14,6 @@ class AdminSitterController extends AbstractController
 
         $sitters = $sitterRepository->findAll();
 
-
         return $this->render('admin/page/sitter/list_sitters.html.twig', ['sitters' => $sitters]);
     }
 

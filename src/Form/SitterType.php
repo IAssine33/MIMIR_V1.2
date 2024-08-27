@@ -2,11 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Account;
 use App\Entity\City;
 use App\Entity\Sitter;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,6 +27,9 @@ class SitterType extends AbstractType
             ->add('certifications')
             ->add('photo_url')
             ->add('contact_info')
+            ->add('save', SubmitType::class, [
+                'label' => 'Sauvegarder',
+            ])
         /*
             ->add('created_at', null, [
                 'widget' => 'single_text',
@@ -33,15 +37,17 @@ class SitterType extends AbstractType
             ->add('updated_at', null, [
                 'widget' => 'single_text',
             ])
-        */
-            ->add('user', EntityType::class, [
-                'class' => Account::class,
+*/
+            /*->add('user', EntityType::class, [
+                'class' => User::class,
                 'choice_label' => 'id',
-            ])
+            ])*/
+
             ->add('city', EntityType::class, [
                 'class' => City::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
+
         ;
     }
 

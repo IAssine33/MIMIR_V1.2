@@ -2,13 +2,25 @@
 
 
 {% block main %}
-    <h1>Nos Nounous pour vos MIMIR: </h1>
+
+  {#   <a href="{{ path('sitter_update') }}">Modifier</a> #}
+   {#  <a href="{{ path('sitter_delete') }}">Supprimer</a> #}
+<h1>Nos Nounous pour vos MIMIR: </h1>
+<section class="flex">
+
+
     {% for sitter in sitters %}
-        {{ sitter.user.firstname }}
-        {{ sitter.user.lastname }}
-      {#   <p>Date de naissance : {{ sitter.bornedAt|date('d/m/Y') }}</p>
-        <p>Âge : {{ (date()|date('Y') - sitter.bornedAt('Y')) }} ans</p>
-      #}
+        <article class="blocArticle">
+            <h1><a class="text_black" href="{{ path("sitter_profil", {id : sitter.id}) }}">{{ sitter.user.firstname }}</a></h1>
+            <h1><a class="text_black" href="{{ path("sitter_profil", {id : sitter.id}) }}">{{ sitter.user.lastname }}</a></h1>
+          {#   <p>Date de naissance : {{ sitter.bornedAt|date('d/m/Y') }}</p>
+            <p>Âge : {{ (date()|date('Y') - sitter.bornedAt('Y')) }} ans</p>
+          #}
+            <p class="text_black">{{ sitter.bio }}</p>
+            <p class="text_black">{{ sitter.availability }}</p>
+
+        </article>
     {% endfor %}
 
+</section>
 {% endblock %}

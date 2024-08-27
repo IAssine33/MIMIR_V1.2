@@ -1,4 +1,4 @@
-{% extends 'admin/baseAdmin.html.twig' %}
+{% extends 'public/basePublic.html.twig' %}
 
 {% block main %}
 
@@ -30,7 +30,7 @@
     {{ form_row(sitterForm.user.lastname) }}
     {{ form_row(sitterForm.user.email) }}
     #}
-    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+
     {{ form_end(sitterForm) }}
 
 {% endblock %}

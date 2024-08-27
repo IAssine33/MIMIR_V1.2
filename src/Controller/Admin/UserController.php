@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 
 
+use App\Entity\Sitter;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\SitterType;
@@ -20,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-
+/*
     #[Route('/user/new', name: 'user_new')]
     public function newSitter(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -42,7 +43,7 @@ class UserController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
             }catch (\Exception $e){
-                return $this->render('admin/errors/error-404.html.twig', [
+                return $this->render('errors/error-404.html.twig', [
                     'error' => $e->getMessage(),
                 ]);
             }
@@ -58,9 +59,24 @@ class UserController extends AbstractController
             "userForm" =>  $userForm,
         ]);
     }
+*/
+
+/*
+    #[\Symfony\Component\Routing\Attribute\Route('/user/sitter/insert', name: 'admin_sitter')]
+    function insertAdmin( Request $request): Response
+    {
+
+        $sitter = new Sitter();
+        $sitterForm = $this->createForm(SitterType::class, $sitter);
+        $sitterForm->handleRequest($request);
 
 
 
+        return $this->render('admin/page/sitter/edit_sitter.html.twig', ['sitterForm' => $sitterForm->createView(),]);
+    }
+*/
+
+/*
     #[Route('/sitter/update/{id}', name: 'sitter_update')]
     public function updateSitter(?int $id, Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -94,5 +110,6 @@ class UserController extends AbstractController
             'sitterForm' => $sitterForm->createView(),
         ]);
     }
+*/
 
 }

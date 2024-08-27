@@ -12,7 +12,7 @@
     <div id="bg_navBar">
         <div>
             {# <img src="" alt="logo"> #}
-            <h1 id="logo_MIMIR">MIMIR</h1>
+            <h1 id="logo_MIMIR"><a href="{{ path('home') }}">MIMIR</a></h1>
         </div>
         <nav class="flex">
         <div>
@@ -22,8 +22,9 @@
             <button>Search</button>
         </div>
             <ul class="flex">
-                <li ><a href="#" class="white">S'inscrire</a></li>
-                <li ><a href="#" class="white">Se connecter</a></li>
+                <li ><a href="{{ path('user_newSitter') }}" class="white">S'inscrire</a></li>
+                <li ><a href="{{ path('app_login') }}" class="white">Se connecter</a></li>
+                <li ><a href="{{ path('app_logout') }}" class="white">Se déconnecter</a></li>
             </ul>
         </nav>
     </div>
@@ -45,6 +46,7 @@ par un controleur. Si oui, on les affiche
     </div>
 {% endfor %}
 <main>
+
     {% block main %}
 
     {% endblock %}
