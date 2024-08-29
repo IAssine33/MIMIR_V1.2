@@ -1,0 +1,11 @@
+@mixin text_arsenal($font: "Arsenal" sans-serif, $weight: 700, $style: normal){
+  font-family: $font;
+  font-weight: $weight;
+  font-style: $style;
+}
+
+@mixin flex($d-flex: flex, $j-content: space-around, $a_items: normal){
+  display: $d-flex;
+  justify-content: $j-content;
+  align-items: $a_items;
+}
