@@ -1,0 +1,45 @@
+{% extends 'public/basePublic.html.twig' %}
+{% block main %}
+    <h1>Profil :</h1>
+
+    <section class="flex">
+        <article class="blocArticle">
+            <h3>{{ parent.user.firstname }}</h3>
+            <h3>{{ parent.user.lastname }}</h3>
+            <h4>{{ parent.phone }}</h4>
+            <p>{{ parent.adress }}</p>
+
+            <h3>{{ parent.createdAt | date('d-m-Y H:i') }}</h3>
+            {#
+            <td>
+                {% if sitter.isPublished %}
+                    <p>Oui</p>
+                {% else %}
+                    <p>Non</p>
+                {% endif %}
+
+            </td>
+            #}
+            {#
+            <td>
+                <a href="{{ path('admin_update_sitter', {id: sitter.id}) }}">Mettre à jour</a>
+
+
+                <div class="admin-sitter-popup-delete" data-sitter-popup-target-id="{{ sitter.id }}">
+                    <p>Voulez vous vraiment supprimer ?</p>
+
+                    <a href="{{ path('admin_delete_sitter', {id: sitter.id}) }}">Supprimer</a>
+                </div>
+
+                <p data-sitter-trigger-id="{{ sitter.id }}" class="js-admin-sitter-delete">Supprimer</p>
+
+
+            </td>
+            #}
+            <a href="">Modifier</a>
+            <a href="">Supprimer</a>
+        </article>
+    </section>
+
+
+{% endblock %}

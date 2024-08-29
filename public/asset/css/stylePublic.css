@@ -72,3 +72,52 @@ main{
 .text_black{
     color: black;
 }
+
+footer {
+    background-color: rgba(4, 118, 154, 1);
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    margin: 0 auto;
+}
+
+.footer-div-logo{
+    margin: auto;
+}
+
+.logo {
+    font-family: "Baloo Tammudu 2", sans-serif;
+    font-size: 24px;
+    color: rgba(218, 137, 130, 1);
+}
+
+
+.icone_rs {
+    width: 25%;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-icons{
+    width: 25%;
+}
+
+.footer-div{
+    width: 20%;
+}
+
+.social-icons a {
+    color: #A6F5FF;
+    font-size: 24px;
+}
+
+.footer-div p {
+    font-family: "Baloo Tammudu 2", sans-serif;
+    font-size: 14px;
+    color: white;
+}

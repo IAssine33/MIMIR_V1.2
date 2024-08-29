@@ -17,7 +17,17 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+            ->add('firstname')
+            ->add('lastname')
             ->add('email')
+            ->add('password')
+            // Pour hasher le mot de passe directement dans l'EntityType :
+           /* ->add('password', PasswordType::class, [
+                'hash_property_path' => 'password',
+                'mapped' => false,
+            ])*/
+
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'Sitter' => 'ROLE_SITTER',
@@ -28,25 +38,24 @@ class UserType extends AbstractType
                 'multiple' => true,   // Permet la sélection multiple
                 'expanded' => true,   // Affiche les choix sous forme de cases à cocher
             ])
-            ->add('password')
-            ->add('firstname')
-            ->add('lastname')
-            /*
-                ->add('created_at', null, [
-                    'widget' => 'single_text',
-                ])
 
-                ->add('updated_at', null, [
-                    'widget' => 'single_text',
-                ])
-                ->add('sitter', EntityType::class, [
-                    'class' => Sitter::class,
-                    'choice_label' => 'id',
-                ])
-                ->add('userParent', EntityType::class, [
-                    'class' => UserParent::class,
-                    'choice_label' => 'id',
-                ])
+            /*
+
+                    ->add('created_at', null, [
+                        'widget' => 'single_text',
+                    ])
+
+                    ->add('updated_at', null, [
+                        'widget' => 'single_text',
+                    ])
+                    ->add('sitter', EntityType::class, [
+                        'class' => Sitter::class,
+                        'choice_label' => 'id',
+                    ])
+                    ->add('userParent', EntityType::class, [
+                        'class' => UserParent::class,
+                        'choice_label' => 'id',
+                    ])
             */
             ->add('save', SubmitType::class, [
                 'label' => 'Ajouter',

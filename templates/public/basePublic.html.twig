@@ -22,11 +22,20 @@
             <button>Search</button>
         </div>
             <ul class="flex">
+
+            {% if app.user %}
+
+                <li ><a href="{{ path('app_logout') }}" class="white">Se déconnecter</a></li>
+
+            {% else %}
+
                 <li ><a href="{{ path('user_newSitter') }}" class="white">S'inscrire</a></li>
                 <li ><a href="{{ path('app_login') }}" class="white">Se connecter</a></li>
-                <li ><a href="{{ path('app_logout') }}" class="white">Se déconnecter</a></li>
+
+            {% endif %}
             </ul>
         </nav>
+
     </div>
 </header>
 {#
@@ -52,7 +61,42 @@ par un controleur. Si oui, on les affiche
     {% endblock %}
 </main>
 <footer>
-
+    <div class="footer-content">
+        <div class="footer-div-logo">
+            <h1 class="logo">MIMIR</h1>
+        </div>
+        <div class="footer-div">
+            <ul class="social-icons">
+                <li>
+                    <a href="#"><img src="{{ asset("asset/icone_reseau_sociaux/facebook (1).png") }}" class="icone_rs" alt="icone_facebook"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="{{ asset("asset/icone_reseau_sociaux/instagram.png") }}" class="icone_rs" alt="icone_instagram"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="{{ asset("asset/icone_reseau_sociaux/twitter.png") }}" class="icone_rs" alt="icone_twiter"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-div">
+            <h4>CONTACT</h4>
+            <p>Lorem ipsum dolor </p>
+            <p>Lorem ipsum dolor </p>
+            <p>Lorem ipsum dolor </p>
+        </div>
+        <div class="footer-div">
+            <h4>À PROPOS</h4>
+            <p>Lorem ipsum dolor </p>
+            <p>Lorem ipsum dolor </p>
+            <p>Lorem ipsum dolor </p>
+        </div>
+        <div class="footer-div">
+            <h4>AIDE ET CONSEILS</h4>
+            <p>Lorem ipsum dolor </p>
+            <p>Lorem ipsum dolor </p>
+            <p>Lorem ipsum dolor </p>
+        </div>
+    </div>
 </footer>
 </body>
 </html>

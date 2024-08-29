@@ -59,10 +59,18 @@ class SitterController extends AbstractController
     #[Route('/user/sitter/insert', name: 'insert_sitter')]
    public function insertSitter(Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, Security $security): Response
     {
-        //   $sitter = $id ? $entityManager->getRepository(Sitter::class)->find($id) : new Sitter();
+        // Vérifiez si l'utilisateur n'est pas connecté
+        if (!$security->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        // Vérifiez si l'utilisateur a le rôle 'ROLE_SITTER'
+        if (!$this->isGranted('ROLE_SITTER')) {
+            return $this->redirectToRoute('app_login');
+        }
+
         // Récupérer l'utilisateur connecté
         $user = $security->getUser();
-
 
         // Vérifier si l'utilisateur a déjà un Sitter enregistré
         $existingSitter = $sitterRepository->findOneBy(['user' => $user]);
@@ -71,7 +79,7 @@ class SitterController extends AbstractController
             // Vérifier si certains champs du Sitter sont déjà remplis
             if (!empty($existingSitter->getBio()) || !empty($existingSitter->getCertifications())) {
 
-                // Si les champs ne sont pas vides, rediriger vers la page d'accueil
+                // Si les champs ne sont pas vides, rediriger vers la page de profil
                 return $this->redirectToRoute('sitter_profil');
             } else {
                 return $this->redirectToRoute('app_login');
@@ -114,29 +122,28 @@ class SitterController extends AbstractController
         return $this->render('public/page/sitter/new_sitter.html.twig', ['sitterForm' => $sitterForm->createView()]);
     }
 
-    #[Route('/sitter/profil/{id}', name: 'sitter_profil')]
-    public function sitter_by_id($id, SitterRepository $sitterRepository): Response
+    #[Route('/user/sitter/profil', name: 'sitter_profil')]
+    public function sitter_by_id( SitterRepository $sitterRepository): Response
     {
-        return $this->render('public/page/sitter/sitter_profil.html.twig', ['sitter' => $sitterRepository->find($id)]);
+        $currentUser = $this->getUser();
+        return $this->render('public/page/sitter/sitter_profil.html.twig', ['user' => $currentUser, 'sitter' => $sitterRepository->findOneBy(['user' => $currentUser])]);
 
     }
 
-    #[Route('/sitter/update/{id}', name: 'sitter_update')]
-    public function updateSitter(?int $id, Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, UserPasswordHasherInterface $passwordHasher): Response
+    #[Route('/user/sitter/update', name: 'sitter_update')]
+    public function updateSitter( Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
-    /*
-        $currentUser = $this->geter();
 
-        if ($currentUser !== null && $this->isGranted('ROLE_SITTER')) {
-            return $this->redirectToRoute('sitter_update', ['id' => $id]);
-        }
-    */
-        $sitter = $sitterRepository->find($id);
-        //    $oldPassword = $sitter->getPassword();
+        $currentUser = $this->getUser();
+        /*
+            if ($currentUser !== null && $this->isGranted('ROLE_SITTER')) {
+                return $this->redirectToRoute('sitter_update', ['id' => $id]);
+            }
+        */
+        $sitter = $sitterRepository->findOneBy(['user' => $currentUser]);
 
-        //   $sitter = $id ? $entityManager->getRepository(Sitter::class)->find($id) : new Sitter();
+
         $sitterForm = $this->createForm(SitterType::class, $sitter);
-
         $sitterForm->handleRequest($request);
 
         if ($sitterForm->isSubmitted() && $sitterForm->isValid()) {
@@ -145,27 +152,31 @@ class SitterController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'modification du Nounou enregistrée');
+            return $this->redirectToRoute('sitter_profil');
         }
 
-        return $this->render('public/page/sitter/edit_sitter.html.twig', [
-            'sitterForm' => $sitterForm->createView(),
+        return $this->render('public/page/sitter/edit_sitter.html.twig', ['user' => $currentUser, 'sitterForm' => $sitterForm->createView()
+
         ]);
     }
 
 
-        #[Route('/sitter/delete/{id}', name: 'sitter_delete')]
-        public function deleteSitter(?int $id, EntityManagerInterface $entityManager, SitterRepository $sitterRepository): Response
+        #[Route('/user/sitter/delete', name: 'sitter_delete')]
+        public function deleteSitter( EntityManagerInterface $entityManager, SitterRepository $sitterRepository): Response
         {
-            $sitter = $sitterRepository->find($id);
+            $currentUser = $this->getUser();
+
+            $sitter = $sitterRepository->findOneBy(['user' => $currentUser]);
 
             if (!$sitter) {
-                throw $this->createNotFoundException('No sitter found');
+                $this->addFlash('error', 'Aucune Nounou trouvé pour cet utilisateur! veuillez créez une nouvelle.');
+                return $this->redirectToRoute('insert_sitter');
             }
 
             try {
                 $entityManager->remove($sitter);
                 $entityManager->flush();
-                $this->addFlash('success', 'suppression du Nounou');
+                $this->addFlash('success', 'Suppression du Nounou ' . $sitter->getUser()->getFirstname());
             }catch (\Exception $e){
                 $this->addFlash('error', $e->getMessage());
             }

@@ -6,35 +6,35 @@
             <h1> Créez votre compte : </h1>
 
             <div class="formWrapper">
-                {#  #}
+
                 {{
                 form_start(userForm)
                 }}
-                <div class="row">
-                    {#
-                    <div class="col-4">
+                <div class="">
+                    <div class="">
                         {{ form_row(userForm.firstname) }}
                     </div>
-                    <div class="col-4">
+                    <div class="">
                         {{ form_row(userForm.lastname) }}
                     </div>
-                    #}
-                    <div class="col-4">
+                    <div class="">
                     </div>
-                    <div class="col-4">
+                    <div class="">
                         {{ form_row(userForm.email) }}
                     </div>
-                    <div class="col-4">
+                    <div class="">
                         {{ form_row(userForm.password) }}
                     </div>
-                    <div class="col-4">
-
+                    <div class="">
+                        {{ form_row(userForm.save) }}
                     </div>
                 </div>
-
+                {{
+                form_end(userForm)
+                }}
             </div>
 
-            {{    form_end(userForm)    }}
+
         </article>
     </section>
 

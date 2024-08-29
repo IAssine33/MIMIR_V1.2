@@ -5,11 +5,23 @@
 
   {#   <a href="{{ path('sitter_update') }}">Modifier</a> #}
    {#  <a href="{{ path('sitter_delete') }}">Supprimer</a> #}
-<h1>Nos Nounous pour vos MIMIR: </h1>
-<section class="flex">
-
-
-    {% for sitter in sitters %}
+{% if app.user %}
+    {% else %}
+    <h1>Vous étes : </h1>
+    <section class="flex">
+        <article class="blocArticle">
+            <h1><a class="text_black" href="{{ path("user_newParent") }}">Parent</a></h1>
+        </article>
+    </section>
+    <section class="flex">
+        <article class="blocArticle">
+            <h1><a class="text_black" href="{{ path("user_newSitter") }}">Nounou</a></h1>
+        </article>
+    </section>
+{% endif %}
+    <section class="flex">
+        <h1>Nos Nounous pour vos MIMIR: </h1>
+        {% for sitter in sitters %}
         <article class="blocArticle">
             <h1><a class="text_black" href="{{ path("sitter_profil", {id : sitter.id}) }}">{{ sitter.user.firstname }}</a></h1>
             <h1><a class="text_black" href="{{ path("sitter_profil", {id : sitter.id}) }}">{{ sitter.user.lastname }}</a></h1>
@@ -20,7 +32,7 @@
             <p class="text_black">{{ sitter.availability }}</p>
 
         </article>
-    {% endfor %}
+        {% endfor %}
 
-</section>
+    </section>
 {% endblock %}

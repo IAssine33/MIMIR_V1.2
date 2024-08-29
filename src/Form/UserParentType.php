@@ -2,11 +2,13 @@
 
 namespace App\Form;
 
-use App\Entity\Account;
+
 use App\Entity\City;
+use App\Entity\User;
 use App\Entity\UserParent;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +20,14 @@ class UserParentType extends AbstractType
             ->add('civility')
             ->add('phone')
             ->add('adress')
-            /*
+            ->add('save', SubmitType::class, [
+                'label' => 'Sauvegarder',
+            ])
+            ->add('city', EntityType::class, [
+                'class' => City::class,
+                'choice_label' => 'name',
+            ])
+        /*
                 ->add('created_at', null, [
                     'widget' => 'single_text',
                 ])
@@ -26,15 +35,13 @@ class UserParentType extends AbstractType
                 ->add('updated_at', null, [
                     'widget' => 'single_text',
                 ])
-            */
-            ->add('city', EntityType::class, [
-                'class' => City::class,
-                'choice_label' => 'id',
-            ])
+
+
             ->add('user', EntityType::class, [
-                'class' => Account::class,
+                'class' => User::class,
                 'choice_label' => 'id',
             ])
+        */
         ;
     }
 

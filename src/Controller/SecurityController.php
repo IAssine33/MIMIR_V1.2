@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Repository\SitterRepository;
 use App\Repository\UserParentRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,49 +17,18 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, SitterRepository $sitterRepository, UserParentRepository $userParentRepository): Response
     {
 
-        /*
-                      $currentUser = $this->geter();
-
-                              if ($currentUser !== null && $this->isGranted('ROLE_PARENT')) {
-                                  return $this->redirectToRoute('app_home');
-                              }
-                              if ($currentUser !== null && $this->isGranted('ROLE_SITTER')) {
-                                  return $this->redirectToRoute('app_home');
-                              }
-
-               if ($currentUser !== null && $this->isGranted('ROLE_SITTER')) {
-                   return $this->redirectToRoute('insert_sitter');
-               }
-            */
-
-        // Vérifier si l'utilisateur est connecté
         if ($this->getUser()) {
-            $user = $this->getUser();
-            // Vérifiez si l'utilisateur est un sitter enregistré
-            $sitter = $sitterRepository->findOneBy(['user' => $user]);
-
-            if ($sitter  && $this->isGranted('ROLE_SITTER')) {
-
-                // Si l'utilisateur est un sitter enregistré, rediriger-le vers la page acceuil
-                return $this->redirectToRoute('home');
-            } else {
-                // Si l'utilisateur n'est pas enregistré comme sitter, rediriger vers le formulaire d'enregistrement
-                return $this->redirectToRoute('insert_sitter');
-            }
-        }
-
-        // Vérifier si l'utilisateur est connecté
-        if ($this->getUser()) {
-            $user = $this->getUser();
-            // Vérifiez si l'utilisateur est un parent enregistré
-            $userParent = $userParentRepository->findOneBy(['user' => $user]);
-
-            if ($userParent && $this->isGranted('ROLE_PARENT')) {
-                // Si l'utilisateur est un parent enregistré, rediriger-le vers la page acceuil
-                return $this->redirectToRoute('home');
-            } else{
+            // Vérifiez le rôle de l'utilisateur connecté et redirigez en conséquence
+            // Si il a le role est Parent, redirection vers l'acceuil
+            if ($this->isGranted('ROLE_PARENT')) {
                 return $this->redirectToRoute('insert_parent');
             }
+            // Si il a le role est Sitter, redirection vers l'acceuil
+            if ($this->isGranted('ROLE_SITTER')) {
+                return $this->redirectToRoute('sitter_profil');
+            }
+
+
         }
 
 
