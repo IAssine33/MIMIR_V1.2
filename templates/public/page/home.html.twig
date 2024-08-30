@@ -7,15 +7,12 @@
    {#  <a href="{{ path('sitter_delete') }}">Supprimer</a> #}
 {% if app.user %}
     {% else %}
-    <h1>Vous étes : </h1>
+
     <section class="flex">
         <article class="blocArticle">
-            <h1><a class="text_black" href="{{ path("user_newParent") }}">Parent</a></h1>
-        </article>
-    </section>
-    <section class="flex">
-        <article class="blocArticle">
-            <h1><a class="text_black" href="{{ path("user_newSitter") }}">Nounou</a></h1>
+            <h1>Vous cherchez une garde? OU Vous cherchez une nounou?</h1>
+                <p><a class="text_black" href="{{ path('user_new') }}">Créer un compte</a></p>
+
         </article>
     </section>
 {% endif %}

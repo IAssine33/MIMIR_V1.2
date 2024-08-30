@@ -3,9 +3,7 @@
 namespace App\Controller\Public;
 
 use App\Entity\Sitter;
-use App\Entity\User;
 use App\Form\SitterType;
-use App\Form\UserType;
 use App\Repository\SitterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,44 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SitterController extends AbstractController
 {
-    #[Route('/user/newSitter', name: 'user_newSitter')]
-    public function newUserSitter(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
-    {
-        $userSitter = new User();
-        $userForm = $this->createForm(UserType::class, $userSitter);
-        $userForm->handleRequest($request);
 
-
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
-
-            $password = $userForm->get('password')->getData();
-
-            $hashedPassword = $passwordHasher->hashPassword($userSitter, $password);
-            $userSitter->setPassword($hashedPassword);
-
-            try {
-
-                //$user->setRoles(['ROLE_SITTER']);
-
-                // Persister l'entité user
-                $entityManager->persist($userSitter);
-                $entityManager->flush();
-            } catch (\Exception $e) {
-                return $this->render('errors/error-404.html.twig', [
-                    'error' => $e->getMessage(),
-                ]);
-            }
-
-
-            // Rediriger vers la page de connexion
-            return $this->redirectToRoute('app_login');
-        }
-
-
-        return $this->render('public/page/sitter/new_userSitter.html.twig', [
-            "userForm" => $userForm,
-        ]);
-    }
 
     #[Route('/user/sitter/insert', name: 'insert_sitter')]
    public function insertSitter(Request $request, EntityManagerInterface $entityManager, SitterRepository $sitterRepository, Security $security): Response
@@ -71,16 +32,20 @@ class SitterController extends AbstractController
 
         // Récupérer l'utilisateur connecté
         $user = $security->getUser();
-
         // Vérifier si l'utilisateur a déjà un Sitter enregistré
         $existingSitter = $sitterRepository->findOneBy(['user' => $user]);
 
+
+
         if ($existingSitter) {
+            // je recupére la sitter enregistrer avec son id
+            $id = $existingSitter->getId();
             // Vérifier si certains champs du Sitter sont déjà remplis
+
             if (!empty($existingSitter->getBio()) || !empty($existingSitter->getCertifications())) {
 
                 // Si les champs ne sont pas vides, rediriger vers la page de profil
-                return $this->redirectToRoute('sitter_profil');
+                return $this->redirectToRoute('sitter_profil', ['id' => $id])   ;
             } else {
                 return $this->redirectToRoute('app_login');
             }
@@ -122,11 +87,12 @@ class SitterController extends AbstractController
         return $this->render('public/page/sitter/new_sitter.html.twig', ['sitterForm' => $sitterForm->createView()]);
     }
 
-    #[Route('/user/sitter/profil', name: 'sitter_profil')]
-    public function sitter_by_id( SitterRepository $sitterRepository): Response
+    #[Route('/user/sitter/{id}', name: 'sitter_profil')]
+    public function sitter_by_id(int $id, SitterRepository $sitterRepository): Response
     {
-        $currentUser = $this->getUser();
-        return $this->render('public/page/sitter/sitter_profil.html.twig', ['user' => $currentUser, 'sitter' => $sitterRepository->findOneBy(['user' => $currentUser])]);
+        $sitter = $sitterRepository->find($id);
+
+        return $this->render('public/page/sitter/sitter_profil.html.twig', ['sitter' => $sitter]);
 
     }
 
@@ -161,8 +127,8 @@ class SitterController extends AbstractController
     }
 
 
-        #[Route('/user/sitter/delete', name: 'sitter_delete')]
-        public function deleteSitter( EntityManagerInterface $entityManager, SitterRepository $sitterRepository): Response
+        #[Route('/user/sitter/delete/{id}', name: 'sitter_delete')]
+        public function deleteSitter(EntityManagerInterface $entityManager, SitterRepository $sitterRepository, Security $security): Response
         {
             $currentUser = $this->getUser();
 
@@ -176,6 +142,7 @@ class SitterController extends AbstractController
             try {
                 $entityManager->remove($sitter);
                 $entityManager->flush();
+                $security->logout(false);
                 $this->addFlash('success', 'Suppression du Nounou ' . $sitter->getUser()->getFirstname());
             }catch (\Exception $e){
                 $this->addFlash('error', $e->getMessage());

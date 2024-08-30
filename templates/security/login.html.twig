@@ -3,39 +3,57 @@
 {% block title %}Se connecter !{% endblock %}
 
 {% block main %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+<section class="login_bloc">
+    <article class="blocArticle">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-            <div class="connexion_container">
-                <h1 class="h3 mb-3 font-weight-normal">Connxion</h1>
-                <label for="username">Email</label>
-                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-                <label for="password">Password</label>
-                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+                <div class="login_bloc">
+                    <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+                    <div class="input_bloc">
+                        <div class="div_input">
+                            <label for="username">Email</label>
+                            <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+                        </div>
+                        <div class="div_input">
+                            <label for="password">Password</label>
+                            <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                        </div>
+                        <div class="div_input">
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}"
+                            >
+                        </div>
+                    </div>
+                {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
 
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
-            </div>
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+                    <div class="checkbox mb-3">
+                        <input type="checkbox" name="_remember_me" id="_remember_me">
+                        <label for="_remember_me">Remember me</label>
+                    </div>
+                #}
+                <div class="div_button">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Sign in
+                    </button>
+                    </div>
+                </div>
+        </form>
+    </article>
+</section>
+<section>
+    <article class="inscrie_bloc">
+        <h1>Vous n'avez pas de compte ? Inscrivez-vous aujourd'hui!</h1>
+        <p>Trouvez une baby-sitter ou un nouveau poste de garde d'enfants en quelques minutes</p>
+    </article>
+</section>
 {% endblock %}

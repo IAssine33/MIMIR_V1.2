@@ -1,17 +1,165 @@
-/* Error: expected "{".
- *    ,
- * 16 | @import "responsive/telephone";
- *    |                               ^
- *    '
- *   sass/style.scss 16:31  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a    \2577 \a 16 \2502  @import "responsive/telephone";\a    \2502                                ^\a    \2575 \a   sass/style.scss 16:31  root stylesheet';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
 }
+
+#logo_MIMIR {
+  font-family: "Baloo Tammudu 2", sans-serif;
+  color: rgb(218, 137, 130);
+  margin-left: 100px;
+  margin-top: 10px;
+}
+
+#bg_navBar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(80, 111, 144);
+}
+#bg_navBar .flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  margin-right: 20px;
+  flex-wrap: wrap;
+}
+#bg_navBar .flex label {
+  display: block;
+  font: 1rem "Fira Sans", sans-serif;
+}
+#bg_navBar .flex .white {
+  color: whitesmoke;
+}
+#bg_navBar input, #bg_navBar label {
+  margin: 0.4rem 0;
+}
+
+main {
+  background-image: url("../image/_background_MIMIR.jpeg");
+  background-color: rgb(255, 255, 255);
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  height: 100vh;
+}
+
+.blocArticle {
+  background-color: rgba(169, 199, 212, 0.9);
+  border-radius: 30px;
+  width: 50%;
+  text-align: center;
+  height: 65vh;
+  font-family: "Baloo Tammudu 2", sans-serif;
+  color: black;
+  margin: auto;
+}
+
+.text_black {
+  color: black;
+}
+
+.login_bloc {
+  width: 70%;
+  margin: auto;
+}
+.login_bloc h1 {
+  font-family: Arsenal, sans-serif;
+  color: black;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.input_bloc {
+  margin-top: 10%;
+}
+
+.div_input {
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  margin-bottom: 5px;
+}
+
+.div_input label {
+  text-align: start;
+}
+
+.div_input input {
+  height: 35px;
+}
+
+.div_button button {
+  padding: 5px 35px;
+}
+
+.inscrie_bloc {
+  width: 30%;
+  margin: 5% auto;
+  background-color: rgba(4, 118, 154, 0.92);
+  padding: 2%;
+}
+.inscrie_bloc h1 {
+  font-family: Arsenal, sans-serif;
+  color: #dbeafe;
+  margin-bottom: 2%;
+}
+
+footer {
+  background-color: rgb(4, 118, 154);
+  padding: 20px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  margin: 0 auto;
+}
+
+.footer-div-logo {
+  margin: auto;
+  margin-top: 60px;
+}
+
+.logo {
+  font-family: "Baloo Tammudu 2", sans-serif;
+  font-size: 40px;
+  color: rgb(218, 137, 130);
+}
+
+.icone_rs {
+  width: 40%;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.social-icons {
+  width: 25%;
+  margin-top: 35px;
+}
+
+.footer-div {
+  width: 20%;
+}
+
+.social-icons a {
+  color: #A6F5FF;
+  font-size: 24px;
+}
+
+.footer-div h4 {
+  margin-bottom: 25px;
+}
+
+.footer-div p {
+  font-family: "Baloo Tammudu 2", sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+/*# sourceMappingURL=style.css.map */

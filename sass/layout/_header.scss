@@ -9,21 +9,31 @@
 #bg_navBar{
   @include flex($a_items: center);
   background-color: rgba(80, 111, 144, 1);
+
+  .flex{
+    @include flex($a_items: center);
+    gap: 20px;
+    margin-right: 20px;
+    flex-wrap: wrap;
+
+    label {
+      display: block;
+      font: 1rem 'Fira Sans', sans-serif;
+    }
+    .white{
+      color: whitesmoke;
+    }
+  }
+
+  input, label {
+    margin: 0.4rem 0;
+  }
+
 }
 
-label {
-  display: block;
-  font: 1rem 'Fira Sans', sans-serif;
-}
 
-input, label {
-  margin: 0.4rem 0;
-}
 
-.flex{
-  @include flex($a_items: center);
-  gap: 20px;
-  margin-right: 20px;
-  flex-wrap: wrap;
-}
+
+
+
 

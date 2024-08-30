@@ -17,36 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserParentController extends AbstractController
 {
-    #[Route('/user/newParent', name: 'user_newParent')]
-    public function newUserParent(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher ): Response
-    {
-
-        $userParent = new User();
-        $userForm = $this->createForm(UserType::class, $userParent);
-        $userForm->handleRequest($request);
-
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
-
-            $password = $userForm->get('password')->getData();
-
-            $hashedPassword = $passwordHasher->hashPassword($userParent, $password);
-            $userParent->setPassword($hashedPassword);
-
-            try {
-                $entityManager->persist($userParent);
-                $entityManager->flush();
-            } catch (\Exception $e) {
-                return $this->render('errors/error-404.html.twig', [
-                    'error' => $e->getMessage()
-                ]);
-
-            }
-            // Rediriger vers la page de connexion
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('public/page/parent/new_userParent.html.twig', ['userForm' => $userForm->createView()]);
-    }
 
     #[Route('/user/parent/insert', name: 'insert_parent')]
     public function insertParent(Request $request, EntityManagerInterface $entityManager, UserParentRepository $userParentRepository, Security $security): Response
@@ -130,7 +100,7 @@ class UserParentController extends AbstractController
         return $this->render('public/page/parent/edit_parent.html.twig', ['user' => $currentUser,'userParentForm' => $userParentForm->createView()]);
     }
 
-    #[Route('/user/parent/delete', name: 'parent_delete')]
+    #[Route('/user/parent/delete{id}', name: 'parent_delete')]
     public function deleteParent(Request $request, EntityManagerInterface $entityManager, UserParentRepository $userParentRepository, Security $security): Response
     {
         $currentUser = $this->getUser();
@@ -144,7 +114,8 @@ class UserParentController extends AbstractController
         try {
             $entityManager->remove($userParent);
             $entityManager->flush();
-            $this->addFlash('success','supprimer avec succes');
+            $security->logout(false);
+            $this->addFlash('success',$userParent->getUser()->getFirstname().'supprimer avec succes');
         }catch (\Exception $e){
             $this->addFlash('error', $e->getMessage());
         }

@@ -17,15 +17,18 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, SitterRepository $sitterRepository, UserParentRepository $userParentRepository): Response
     {
 
+
         if ($this->getUser()) {
             // Vérifiez le rôle de l'utilisateur connecté et redirigez en conséquence
             // Si il a le role est Parent, redirection vers l'acceuil
             if ($this->isGranted('ROLE_PARENT')) {
-                return $this->redirectToRoute('insert_parent');
+                $id = $this->getUser()->getId();
+                return $this->redirectToRoute('insert_parent', ['id' => $id]);
             }
             // Si il a le role est Sitter, redirection vers l'acceuil
             if ($this->isGranted('ROLE_SITTER')) {
-                return $this->redirectToRoute('sitter_profil');
+                $id = $this->getUser()->getId();
+                return $this->redirectToRoute('insert_sitter', ['id' => $id]);
             }
 
 

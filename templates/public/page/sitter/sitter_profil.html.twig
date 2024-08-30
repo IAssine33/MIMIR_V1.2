@@ -4,11 +4,10 @@
 
     <section class="flex">
         <article class="blocArticle">
-            {% if app.user %}
 
 
-                    <h3>{{ app.user.firstname }}</h3>
-                    <h3>{{ app.user.lastname }}</h3>
+                    <h3>{{ sitter.user.firstname }}</h3>
+                    <h3>{{ sitter.user.lastname }}</h3>
                    {#  <h3>{{ sitter.createdAt | date('d-m-Y H:i') }}</h3>#}
 
 
@@ -38,9 +37,9 @@
 
                     </td>
                     #}
-        <a href="{{ path("sitter_update") }}">Modifier</a>
-        <a href="{{ path("sitter_delete") }}">Supprimer</a>
-            {% endif %}
+        <a href="{{ path("sitter_update",{ id: sitter.id }) }}">Modifier</a>
+        <a href="{{ path("sitter_delete",{ id: sitter.id }) }}">Supprimer</a>
+
         </article>
     </section>
 

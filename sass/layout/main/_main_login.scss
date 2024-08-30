@@ -1,0 +1,49 @@
+
+.login_bloc{
+  width: 70%;
+  margin: auto;
+
+  h1{
+    font-family: Arsenal, sans-serif;
+    color: black;
+    font-size: xx-large;
+    font-weight: bold;
+  }
+}
+
+.input_bloc{
+  margin-top: 10%;
+}
+
+.div_input{
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  margin-bottom: 5px;
+}
+
+
+.div_input label{
+  text-align: start;
+}
+
+.div_input input{
+  height: 35px;
+}
+
+.div_button button{
+  padding: 5px 35px ;
+}
+
+.inscrie_bloc {
+  width: 30%;
+  margin: 5% auto;
+  background-color: rgba(4, 118, 154, 0.92);
+  padding: 2%;
+
+  h1 {
+    font-family: Arsenal, sans-serif;
+    color: #dbeafe;
+    margin-bottom: 2%;
+  }
+}

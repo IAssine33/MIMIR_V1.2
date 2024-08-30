@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\UserParent;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,12 +36,12 @@ class UserType extends AbstractType
                     'Parent' => 'ROLE_PARENT',
                     // Ajoutez d'autres rôles si nécessaire
                 ],
-                'multiple' => true,   // Permet la sélection multiple
-                'expanded' => true,   // Affiche les choix sous forme de cases à cocher
+                'multiple' => false,   // Permet la sélection multiple
+                'required' => true,
             ])
 
-            /*
 
+            /*
                     ->add('created_at', null, [
                         'widget' => 'single_text',
                     ])
@@ -57,9 +58,20 @@ class UserType extends AbstractType
                         'choice_label' => 'id',
                     ])
             */
-            ->add('save', SubmitType::class, [
-                'label' => 'Ajouter',
-            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Sauvegarder',
+            ]);
+                    // j'ajoute un transformateur pour convertir une chaîne en tableau
+    $builder->get('roles')->addModelTransformer(new CallbackTransformer(
+        function ($rolesArray) {
+            // Transformer le tableau en chaîne
+            return count($rolesArray) > 0 ? $rolesArray[0] : null;
+        },
+        function ($roleString) {
+            // Transformer la chaîne en tableau
+            return [$roleString];
+        }
+    ))
         ;
     }
 

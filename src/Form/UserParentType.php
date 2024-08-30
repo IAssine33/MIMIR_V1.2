@@ -20,7 +20,7 @@ class UserParentType extends AbstractType
             ->add('civility')
             ->add('phone')
             ->add('adress')
-            ->add('save', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
                 'label' => 'Sauvegarder',
             ])
             ->add('city', EntityType::class, [

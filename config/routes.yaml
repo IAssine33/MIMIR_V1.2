@@ -3,3 +3,14 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+    # configuration des routes pour prendre en compte le paramètre type et le rediriger correctement en fonction de ce paramètre
+#user_new_parent:
+#    path: /user/new/parent
+#    controller: App\Controller\UserController::newUser
+#    methods: [GET, POST]
+#
+#user_new_sitter:
+#    path: /user/new/sitter
+#    controller: App\Controller\UserController::newUser
+#    methods: [GET, POST]
