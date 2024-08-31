@@ -75,6 +75,7 @@ class Sitter
     {
         $this->works = new ArrayCollection();
         $this->sitterAvailabilities = new ArrayCollection();
+        // Initialisation du champ createdAt et updatedAt avec la date actuelle en utilisant DateTimeImmutable
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
     }
