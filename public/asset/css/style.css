@@ -52,7 +52,7 @@ main {
   border-radius: 30px;
   width: 50%;
   text-align: center;
-  height: 65vh;
+  height: 45vh;
   font-family: "Baloo Tammudu 2", sans-serif;
   color: black;
   margin: auto;
@@ -74,7 +74,7 @@ main {
 }
 
 .input_bloc {
-  margin-top: 10%;
+  margin-top: 35%;
 }
 
 .div_input {
