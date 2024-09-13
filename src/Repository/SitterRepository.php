@@ -16,6 +16,16 @@ class SitterRepository extends ServiceEntityRepository
         parent::__construct($registry, Sitter::class);
     }
 
+    public function findAllOrderedByUpdatedAt(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.updated_at', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     //    /**
     //     * @return Sitter[] Returns an array of Sitter objects
     //     */

@@ -8,11 +8,19 @@
 
 // Layout
 @import "layout/header";
-@import "layout/main/main";
+@import "layout/main/mainHome";
+@import "layout/main/mainHome_parent";
 @import "layout/main/main_login";
+@import "layout/main/main_profil";
+@import "layout/main/mainEdit_sitter";
+@import "layout/main/main_newUser";
+@import "layout/main/main_newParent";
 @import "layout/footer";
 
 // Responsive Telephone
+@import "responsive/mobile/responsiveFooter";
+@import "responsive/mobile/responsiveHeader";
+@import "responsive/mobile/responsiveMainHome";
 
 
 // Responsive Tablette

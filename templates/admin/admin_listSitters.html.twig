@@ -1,0 +1,87 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{% endblock %}
+
+{% block main %}
+<main>
+    <h1>Liste des nounous :</h1>
+    <section>
+        <table border="1" width="100%" id="myTable">
+            <thead>
+            <tr>
+                <th>civilité</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Photo</th>
+                <th>Date de creation</th>
+                <th>Est publié ?</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for sitter in sitters %}
+                <tr>
+                    <td>{{ sitter.civility }}</td>
+                    <td>{{ sitter.user.firstName }}</td>
+                    <td>{{ sitter.user.lastName }}</td>
+                    <td>{{ sitter.photoUrl }}</td>
+                    <td>{{ sitter.createdAt|date('d-m-Y H:i:s') }}</td>
+
+                    {#
+                    <td>
+                        {% if sitter.isPublished %}
+                            <p>Oui</p>
+                        {% else %}
+                            <p>Non</p>
+                        {% endif %}
+
+                    </td>
+                    #}
+                    {#
+                    <td>
+                        <a href="{{ path('admin_update_sitter', {id: sitter.id}) }}">Mettre à jour</a>
+
+
+                        <div class="admin-sitter-popup-delete" data-sitter-popup-target-id="{{ sitter.id }}">
+                            <p>Voulez vous vraiment supprimer ?</p>
+
+                            <a href="{{ path('admin_delete_sitter', {id: sitter.id}) }}">Supprimer</a>
+                        </div>
+
+                        <p data-sitter-trigger-id="{{ sitter.id }}" class="js-admin-sitter-delete">Supprimer</p>
+
+
+                    </td>
+                    #}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+
+<script >
+
+    var tableSitter = new DataTable('#myTable', {
+    language: {
+    url: '//cdn.datatables.net/plug-ins/2.1.5/i18n/fr-FR.json',
+},
+});
+    {# let tableParent = new DataTable('#myTable', {
+    language: {
+    url: '//cdn.datatables.net/plug-ins/2.1.5/i18n/fr-FR.json',
+},
+});
+
+    dataTable.on('click', 'tbody tr .js-admin-article-delete', function () {
+    this.closest('td').querySelector('.popupWrapper').style.display = "block"
+});#}
+</script>
+{% endblock %}

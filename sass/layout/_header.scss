@@ -1,35 +1,59 @@
+header {
+  #bg_navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $bg-color;
+    padding: 10px;
 
-#logo_MIMIR{
-  font-family: "Baloo Tammudu 2", sans-serif;
-  color: rgba(218, 137, 130, 1);
-  margin-left: 100px;
-  margin-top: 10px;
-}
+    // Logo style
+    #logo_MIMIR {
+      margin-left: 20px;
 
-#bg_navBar{
-  @include flex($a_items: center);
-  background-color: rgba(80, 111, 144, 1);
-
-  .flex{
-    @include flex($a_items: center);
-    gap: 20px;
-    margin-right: 20px;
-    flex-wrap: wrap;
-
-    label {
-      display: block;
-      font: 1rem 'Fira Sans', sans-serif;
+      a {
+        font-family: "Baloo Tammudu 2", sans-serif;
+        font-weight: bold;
+        color: $logo-color;
+        text-decoration: none;
+        font-size: 1.5rem;
+      }
     }
-    .white{
-      color: whitesmoke;
+
+    // Cacher le Burger menu
+    .burger-menu {
+      display: none; //  cacher par defaut sur les grand ecrans
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      margin-right: 20px;
+
+      div {
+        height: 3px;
+        background-color: $text-color;
+        border-radius: 5px;
+      }
+    }
+
+    // Nav style
+    nav {
+      ul {
+        display: flex;
+        gap: 20px;
+        list-style-type: none;
+        margin-right: 20px;
+
+        .white {
+          color: $text-color;
+          text-decoration: none;
+          font-size: 1rem;
+        }
+      }
     }
   }
-
-  input, label {
-    margin: 0.4rem 0;
-  }
-
 }
+
 
 
 

@@ -1,6 +1,7 @@
 {% extends 'public/basePublic.html.twig' %}
 
 {% block main %}
+<main>
     <section class="flex">
         <article class="blocArticle">
             <h1> Créez votre compte : </h1>
@@ -11,6 +12,9 @@
                 form_start(userForm)
                 }}
                 <div class="">
+                    <div class="civil">
+                        {{ form_row(userForm.civility) }}
+                    </div>
                     <div class="">
                         {{ form_row(userForm.firstname) }}
                     </div>
@@ -37,5 +41,5 @@
 
         </article>
     </section>
-
+</main>
 {% endblock %}

@@ -41,3 +41,8 @@ main{
     width:50%!important;
     margin:auto!important;
 }
+
+.table tbody tr:nth-of-type(even) {
+    background-color: rgba(157, 153, 153, 0.8)!important; /* Pas besoin de !important sauf si nécessaire */
+    background-color: rgba(157, 153, 153, 0.8)!important;
+}

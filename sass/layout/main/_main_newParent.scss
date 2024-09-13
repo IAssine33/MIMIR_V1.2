@@ -1,0 +1,41 @@
+.blocArticle{
+  background-color: rgba(152, 187, 218, 0.94);
+  h1{
+    font-size: x-large;
+  }
+}
+.civil{
+ width: 10%;
+}
+
+.formWrapper{
+  width: 72%;
+  margin: 30px auto 30px;
+  input{
+    all:unset;
+    background-color: #ecf0f1;
+    border: white 1px solid;
+    border-radius: 8px;
+    margin: 10px;
+    width: 100%;
+    height: 3vh;
+  }
+  select{
+    all: unset;
+    background-color: #ecf0f1;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 20px;
+    width: 70%;
+    color: rgba(9, 9, 9, 0.7);
+  }
+  button{
+    all:unset;
+    background-color: #04769A;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 12px;
+    color: white;
+  }
+}

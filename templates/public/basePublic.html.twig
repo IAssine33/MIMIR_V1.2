@@ -2,12 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}MIMIR{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MiMiR{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
    {#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    {% block  bootstrap %} {% endblock %}
     <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
 </head>
 <body>
@@ -15,27 +17,39 @@
     <div id="bg_navBar">
         <div>
             {# <img src="" alt="logo"> #}
-            <h1 id="logo_MIMIR"><a href="{{ path('home') }}">MIMIR</a></h1>
+            <h1 id="logo_MIMIR"><a href="{{ path('home') }}">MiMiR</a></h1>
         </div>
-        <nav class="flex">
+        {# Menu burger #}
+        <ul class="burger-menu" id="burgerMenu">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <nav class="flex_burger">
+            {#
             <div>
                 <label for="site-search"></label>
-                <input type="search" id="site-search" name="q" placeholder="Recherche sur le site…" />
+                <input type="search" id="site-search" name="q" placeholder="Recherche par ville…" />
 
-                <button>Search</button>
+                <button>Chercher</button>
             </div>
-            <ul class="flex">
-
-
+            #}
+            <ul class="flex" >
             {% if app.user %}
-
+                {% if app.user.sitter %}
+                <li><a href="{{ path('home_parent') }}" class="white">Acceuil</a></li>
+                    {% else %}
+                <li><a href="{{ path('home') }}" class="white">Acceuil</a></li>
+                        {% endif %}
+                {% if app.user.sitter %}
+                <li><a href="{{ path('sitter_update', { id: app.user.sitter.id }) }}" class="white">Profil</a></li>
+                    {% else %}
+                <li><a href="{{ path('parent_update') }}" class="white">Profil</a></li>
+                {% endif %}
                 <li ><a href="{{ path('app_logout') }}" class="white">Se déconnecter</a></li>
-
-            {% else %}
-
+                    {% else %}
                 <li><a href="{{ path('user_new') }}" class="white">S'inscrire</a></li>
                 <li ><a href="{{ path('app_login') }}" class="white">Se connecter</a></li>
-
             {% endif %}
             </ul>
         </nav>
@@ -58,16 +72,16 @@ par un controleur. Si oui, on les affiche
         {{ message }}
     </div>
 {% endfor %}
-<main>
 
     {% block main %}
 
     {% endblock %}
-</main>
+
 <footer>
     <div class="footer-content">
         <div class="footer-div-logo">
-            <h1 class="logo">MIMIR</h1>
+                {# <img src="" alt="logo"> #}
+                <h1><a href="{{ path('home') }}" id="logo_footer">MiMiR</a></h1>
         </div>
         <div class="footer-div">
             <ul class="social-icons">
@@ -102,5 +116,16 @@ par un controleur. Si oui, on les affiche
         </div>
     </div>
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const burgerMenu = document.getElementById('burgerMenu');
+        const nav = document.querySelector('.flex_burger');
+
+        burgerMenu.addEventListener('click', function() {
+            console.log('test')
+            nav.classList.toggle('active');
+        });
+    });
+</script>
 </body>
 </html>

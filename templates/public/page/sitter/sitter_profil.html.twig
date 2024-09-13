@@ -1,47 +1,28 @@
 {% extends 'public/basePublic.html.twig' %}
 {% block main %}
-    <h1>Profil :</h1>
-
+<main class="main_profil">
     <section class="flex">
-        <article class="blocArticle">
+        <h1>Profil de {{ sitter.user.firstname }} :</h1>
+        <article class="carte-nounou">
+            <div class="entete-nounou">
+                <img src="{{ asset('assets/uploads/'~sitter.photoUrl) }}" alt="Photo de {{ sitter.user.firstname }}" class="photo-nounou">
+                <div class="info-nounou">
+                    <h2>{{ sitter.user.firstname }} {{ sitter.user.lastname }}</h2>
+                    <p class="localisation-nounou">{{ sitter.city.name }}</p>
+                </div>
+            </div>
+            <p class="bio-nounou">{{ sitter.bio }}</p>
+            <p class="language-nounou">Je parle : {{ sitter.languages }}</p>
+            <p class="disponibilite-nounou">Disponible a partir de : {{ sitter.availability }}</p>
+            <p class="certifications-nounou">Certifications : {{ sitter.certifications }}</p>
 
 
-                    <h3>{{ sitter.user.firstname }}</h3>
-                    <h3>{{ sitter.user.lastname }}</h3>
-                   {#  <h3>{{ sitter.createdAt | date('d-m-Y H:i') }}</h3>#}
-
-
-                    {#
-                    <td>
-                        {% if sitter.isPublished %}
-                            <p>Oui</p>
-                        {% else %}
-                            <p>Non</p>
-                        {% endif %}
-
-                    </td>
-                    #}
-                    {#
-                    <td>
-                        <a href="{{ path('admin_update_sitter', {id: sitter.id}) }}">Mettre à jour</a>
-
-
-                        <div class="admin-sitter-popup-delete" data-sitter-popup-target-id="{{ sitter.id }}">
-                            <p>Voulez vous vraiment supprimer ?</p>
-
-                            <a href="{{ path('admin_delete_sitter', {id: sitter.id}) }}">Supprimer</a>
-                        </div>
-
-                        <p data-sitter-trigger-id="{{ sitter.id }}" class="js-admin-sitter-delete">Supprimer</p>
-
-
-                    </td>
-                    #}
-        <a href="{{ path("sitter_update",{ id: sitter.id }) }}">Modifier</a>
-        <a href="{{ path("sitter_delete",{ id: sitter.id }) }}">Supprimer</a>
-
+            {% if app.user and 'ROLE_SITTER' in app.user.roles and app.user.sitter.id == sitter.id %}
+        <button class="btn-voir-profil"><a href="{{ path("sitter_update", {id: sitter.id}) }}">Modifier</a></button>
+        <button class="btn-voir-profil"><a href="{{ path("sitter_delete",{ id: app.user.sitter.id }) }}">Supprimer</a></button>
+            {% endif %}
         </article>
     </section>
 
-
+</main>
 {% endblock %}

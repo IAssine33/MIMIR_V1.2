@@ -1,0 +1,50 @@
+
+/* ---------------------------------- RESPONSIVE TELEPHONE -------------------------------- */
+
+@media screen and (max-width:779px) {
+
+  .flex_home {
+    flex-direction: column;
+    padding: 5%;
+    article {
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .blocArticle {
+    width: 90%;
+    margin-top: 20px;
+    .text_black h2{
+      font-size: large;
+    }
+  }
+
+  .carte-nounou {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .entete-nounou {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .photo-nounou {
+    margin-bottom: 15px;
+  }
+
+  .badge-mise-en-avant {
+    position: static;
+    margin-top: 10px;
+  }
+
+  .btn-voir-profil {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

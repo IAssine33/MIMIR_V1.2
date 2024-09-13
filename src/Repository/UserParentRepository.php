@@ -16,6 +16,14 @@ class UserParentRepository extends ServiceEntityRepository
         parent::__construct($registry, UserParent::class);
     }
 
+    public function findAllOrderedByUpdatedAtParents(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.updated_at', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return UserParent[] Returns an array of UserParent objects
 //     */

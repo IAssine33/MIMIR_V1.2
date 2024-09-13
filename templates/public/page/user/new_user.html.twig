@@ -1,12 +1,11 @@
 {% extends 'public/basePublic.html.twig' %}
 
 {% block main %}
+<main class="bg_main_form">
     <section class="flex">
         <article class="blocArticle">
             <h1>Créez votre profil </h1>
-
             <div class="formWrapper">
-
                 {{
                 form_start(userForm)
                 }}
@@ -31,11 +30,8 @@
                         }}
                     </div>
                 </div>
-
             </div>
-
-
         </article>
     </section>
-
+</main>
 {% endblock %}

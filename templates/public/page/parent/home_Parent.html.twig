@@ -1,0 +1,36 @@
+{% extends 'public/basePublic.html.twig' %}
+
+
+{% block main %}
+<main>
+    {#   <a href="{{ path('sitter_update') }}">Modifier</a> #}
+    {#  <a href="{{ path('sitter_delete') }}">Supprimer</a> #}
+    {% if app.user %}
+    {% else %}
+
+        <section class="flex">
+            <article class="blocArticle">
+                <h1>Vous cherchez une garde? OU Vous cherchez une nounou?</h1>
+                <p><a class="text_black" href="{{ path('user_new') }}">Créer un compte</a></p>
+
+            </article>
+        </section>
+    {% endif %}
+
+    <section class="flex">
+        {% for parent in parents %}
+            <article class="carte-parent">
+                <div class="entete-parent">
+                    <div class="info-parent">
+                        <h2>{{ parent.user.firstname }} {{ parent.user.lastname }}</h2>
+                        <p class="localisation-parent">{{ parent.city.name }}</p>
+                    </div>
+                </div>
+             {#    <p class="bio-parent">{{ parent.bio }}</p> propriété bio du parent a rajouter #}
+
+                <button class="btn-voir-profil"><a href="{{ path('parent_profil', { id: parent.id }) }}">Voir Profil →</a></button>
+            </article>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}

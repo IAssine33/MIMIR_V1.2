@@ -1,7 +1,7 @@
 {% extends 'public/basePublic.html.twig' %}
 
 {% block main %}
-
+<main>
     <h1> Créer un nouveau parent : </h1>
 
     <div class="formWrapper">
@@ -17,10 +17,14 @@
                 {{ form_row(userParentForm.adress) }}
             </div>
             <div class="col-2">
+                {{ form_row(userParentForm.city) }}
+            </div>
+            <div class="col-2">
                 {{ form_row(userParentForm.submit) }}
             </div>
 
         </div>
         {{    form_end(userParentForm)    }}
     </div>
+</main>
 {% endblock %}

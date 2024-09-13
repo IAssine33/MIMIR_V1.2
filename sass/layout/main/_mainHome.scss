@@ -1,0 +1,158 @@
+.bg_main_color{
+  background-color: #A9C7D4;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  height: 100%;
+  padding: 10%;
+}
+.flex_home{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  article{
+    width: 50%;
+  }
+  h1{
+    font-family: "Baloo Tammudu 2", sans-serif;
+    font-size: xxx-large;
+  }
+}
+.div_img_bebe{
+  width: 90%;
+  margin: auto;
+  img{
+    width: 100%;
+  }
+}
+.text_baloo{
+  font-family: "Baloo Tammudu ", sans-serif;
+}
+
+.btn-container{
+  width: 40%;
+  margin: auto;
+  .btn-en-savoir{
+    background-color: #04769A;
+    border-radius: 11px;
+    padding: 7%;
+    color: #E6EBE6;
+  }
+}
+
+
+.blocArticle {
+  background-color: rgba(169, 199, 212, 0.9);
+  border-radius: 30px;
+  width: 40%;
+  text-align: center;
+  height: 30%;
+  font-family: "Baloo Tammudu 2", sans-serif;
+  color: black;
+  padding: 5%;
+}
+.text_black{
+  color: black;
+}
+section.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+}
+.carte-nounou {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.entete-nounou {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.photo-nounou {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.info-nounou {
+  flex-grow: 1;
+}
+
+.localisation-nounou {
+  color: #7d7d7d;
+  font-size: 14px;
+}
+
+.badge-mise-en-avant {
+  background-color: gold;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.bio-nounou, .disponibilite-nounou, .certifications-nounou, .language-nounou {
+  margin-bottom: 5px;
+  flex-grow: 1;
+}
+
+.btn-voir-profil {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.btn-voir-profil:hover {
+  background-color: #b2ebf2;
+}
+
+
+
+/* --- Responsive pour les tablettes --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .flex_home {
+    padding: 5%;
+    article {
+      width: 48%;
+    }
+  }
+
+  .blocArticle {
+    width: 48%;
+  }
+
+  .carte-nounou {
+    width: 100%;
+  }
+}
+
+
+
+
+

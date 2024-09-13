@@ -1,0 +1,74 @@
+
+/* ---------------------------------- RESPONSIVE TELEPHONE -------------------------------- */
+
+@media screen and (max-width:779px) {
+  #bg_navBar{
+    justify-content: space-between ;
+    #burgerMenu{
+      display: block;
+      width: auto;
+      height: auto;
+
+    }
+  }
+  #burgerMenu li {
+
+    margin: 7px 0;
+    background-color: #ffffff;
+    padding: 2px 25px;
+    transition: transform 0.5s ease;
+  }
+
+  #burgerMenu li:nth-of-type(2) {
+    background-color: #ffffff;
+  }
+
+  #burgerMenu li:nth-of-type(3) {
+    background-color: #ffffff;
+  }
+
+
+  .flex_burger{
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 60px;
+    background-color: rgba(80, 111, 144, 0.87);
+    height: 90vh;
+  }
+  .flex_burger.active{
+    display: flex;
+    align-items: center;
+    height: 60vh;
+    margin: auto;
+    z-index: 2000;
+      .flex{
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+    li{
+      display: block;
+    }
+  }
+
+  #logo_MIMIR {
+    margin-left: 20px;
+    position: relative;
+
+
+    a {
+      font-family: "Baloo Tammudu 2", sans-serif;
+      font-weight: bold;
+      color: $logo-color;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+  }
+
+  .burger-menu.active + nav {
+    display: flex;
+  }
+}
+

@@ -9,29 +9,33 @@ footer {
   align-items: center;
   color: white;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
-.footer-div-logo{
+.footer-div-logo {
   margin: auto;
   margin-top: 60px;
+  text-align: center;
 }
 
-.logo {
-  font-family: "Baloo Tammudu 2", sans-serif;
-  font-size: 40px;
-  color: rgba(218, 137, 130, 1);
-}
+#logo_footer{
 
+    font-family: "Baloo Tammudu 2", sans-serif;
+    font-size: 40px;
+    color: rgba(218, 137, 130, 1);
+
+}
 
 .icone_rs {
-  width: 40%;
+  width: 30px;
   display: inline-block;
   margin: 0 10px;
 }
 
 .social-icons{
-  width: 25%;
-  margin-top: 35px;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .footer-div{
@@ -43,7 +47,7 @@ footer {
   font-size: 24px;
 }
 .footer-div h4{
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .footer-div p {

@@ -2,34 +2,55 @@
 
 
 {% block main %}
-
+<main class="bg_main_color">
   {#   <a href="{{ path('sitter_update') }}">Modifier</a> #}
    {#  <a href="{{ path('sitter_delete') }}">Supprimer</a> #}
 {% if app.user %}
     {% else %}
-
-    <section class="flex">
-        <article class="blocArticle">
-            <h1>Vous cherchez une garde? OU Vous cherchez une nounou?</h1>
-                <p><a class="text_black" href="{{ path('user_new') }}">Créer un compte</a></p>
-
+    <section class="flex_home">
+        <article>
+            <h1> Trouver une garde d’enfants fiable </h1>
+            <div class="div_img_bebe">
+                <img src="{{ asset('asset/image/sitter-for-parents.png') }}" alt="image-bébé">
+            </div>
+            <div class="text_baloo">
+                <h2>Fondée par des parents , pour les parents.</h2>
+                <p>Si vous avez besoin d'une nounou, d'une assistante maternelle,
+                    ou d'une baby-sitter, nous vous fournissons les outils nécessaires pour vous permettre de trouver les soins dont vous avez besoin.
+                </p>
+            </div>
+            <div class="btn-container">
+                <button class="btn-en-savoir">
+                    EN-SAVOIR +
+                </button>
+            </div>
+        </article>
+        <article class="blocArticle text-center">
+            <a class="text_black" href="{{ path('user_new') }}">
+                <h2>Vous cherchez une garde? OU Vous cherchez une nounou?</h2>
+                <p>Créer un compte</p>
+            </a>
         </article>
     </section>
 {% endif %}
     <section class="flex">
-        <h1>Nos Nounous pour vos MIMIR: </h1>
+        <h1>Nos Nounous pour vos Enfants :</h1>
         {% for sitter in sitters %}
-        <article class="blocArticle">
-            <h1><a class="text_black" href="{{ path("sitter_profil", {id : sitter.id}) }}">{{ sitter.user.firstname }}</a></h1>
-            <h1><a class="text_black" href="{{ path("sitter_profil", {id : sitter.id}) }}">{{ sitter.user.lastname }}</a></h1>
-          {#   <p>Date de naissance : {{ sitter.bornedAt|date('d/m/Y') }}</p>
-            <p>Âge : {{ (date()|date('Y') - sitter.bornedAt('Y')) }} ans</p>
-          #}
-            <p class="text_black">{{ sitter.bio }}</p>
-            <p class="text_black">{{ sitter.availability }}</p>
-
-        </article>
+            <article class="carte-nounou">
+                <div class="entete-nounou">
+                    <img src="{{ asset('assets/uploads/'~sitter.photoUrl) }}" alt="Photo de {{ sitter.user.firstname }}" class="photo-nounou">
+                    <div class="info-nounou">
+                        <h2>{{ sitter.user.firstname }} {{ sitter.user.lastname }}</h2>
+                        <p class="localisation-nounou">{{ sitter.city.name }}</p>
+                    </div>
+                    <span class="badge-mise-en-avant">Mis en avant</span>
+                </div>
+                <p class="bio-nounou">{{ sitter.bio }}</p>
+                <p class="disponibilite-nounou">Disponible a partir de : {{ sitter.availability }}</p>
+                <p class="certifications-nounou">Certifications : {{ sitter.certifications }}</p>
+                <button class="btn-voir-profil"><a href="{{ path('sitter_profil', { id: sitter.id }) }}">Voir Profil →</a></button>
+            </article>
         {% endfor %}
-
     </section>
+</main>
 {% endblock %}

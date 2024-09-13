@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -6,60 +7,275 @@
   text-decoration: none;
 }
 
-#logo_MIMIR {
-  font-family: "Baloo Tammudu 2", sans-serif;
-  color: rgb(218, 137, 130);
-  margin-left: 100px;
-  margin-top: 10px;
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-#bg_navBar {
+header #bg_navBar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: rgb(80, 111, 144);
+  padding: 10px;
 }
-#bg_navBar .flex {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
+header #bg_navBar #logo_MIMIR {
+  margin-left: 20px;
+}
+header #bg_navBar #logo_MIMIR a {
+  font-family: "Baloo Tammudu 2", sans-serif;
+  font-weight: bold;
+  color: rgb(218, 137, 130);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+header #bg_navBar .burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
   margin-right: 20px;
-  flex-wrap: wrap;
 }
-#bg_navBar .flex label {
-  display: block;
-  font: 1rem "Fira Sans", sans-serif;
+header #bg_navBar .burger-menu div {
+  height: 3px;
+  background-color: whitesmoke;
+  border-radius: 5px;
 }
-#bg_navBar .flex .white {
+header #bg_navBar nav ul {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  margin-right: 20px;
+}
+header #bg_navBar nav ul .white {
   color: whitesmoke;
-}
-#bg_navBar input, #bg_navBar label {
-  margin: 0.4rem 0;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-main {
-  background-image: url("../image/_background_MIMIR.jpeg");
-  background-color: rgb(255, 255, 255);
+.bg_main_color {
+  background-color: #A9C7D4;
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: contain;
-  height: 100vh;
+  height: 100%;
+  padding: 10%;
+}
+
+.flex_home {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.flex_home article {
+  width: 50%;
+}
+.flex_home h1 {
+  font-family: "Baloo Tammudu 2", sans-serif;
+  font-size: xxx-large;
+}
+
+.div_img_bebe {
+  width: 90%;
+  margin: auto;
+}
+.div_img_bebe img {
+  width: 100%;
+}
+
+.text_baloo {
+  font-family: "Baloo Tammudu ", sans-serif;
+}
+
+.btn-container {
+  width: 40%;
+  margin: auto;
+}
+.btn-container .btn-en-savoir {
+  background-color: #04769A;
+  border-radius: 11px;
+  padding: 7%;
+  color: #E6EBE6;
 }
 
 .blocArticle {
   background-color: rgba(169, 199, 212, 0.9);
   border-radius: 30px;
-  width: 50%;
+  width: 40%;
   text-align: center;
-  height: 45vh;
+  height: 30%;
   font-family: "Baloo Tammudu 2", sans-serif;
   color: black;
-  margin: auto;
+  padding: 5%;
 }
 
 .text_black {
   color: black;
+}
+
+section.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.carte-nounou {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  width: 90%;
+  max-width: 1200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.entete-nounou {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.photo-nounou {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.info-nounou {
+  flex-grow: 1;
+}
+
+.localisation-nounou {
+  color: #7d7d7d;
+  font-size: 14px;
+}
+
+.badge-mise-en-avant {
+  background-color: gold;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.bio-nounou, .disponibilite-nounou, .certifications-nounou, .language-nounou {
+  margin-bottom: 5px;
+  flex-grow: 1;
+}
+
+.btn-voir-profil {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.btn-voir-profil:hover {
+  background-color: #b2ebf2;
+}
+
+/* --- Responsive pour les tablettes --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .flex_home {
+    padding: 5%;
+  }
+  .flex_home article {
+    width: 48%;
+  }
+  .blocArticle {
+    width: 48%;
+  }
+  .carte-nounou {
+    width: 100%;
+  }
+}
+.carte-parent {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  width: 90%;
+  max-width: 1200px; /* Garantit pour qu'il ne s'étend pas trop large sur les grands écrans */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.entete-parent {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.info-parent {
+  flex-grow: 1;
+}
+
+.localisation-parent {
+  color: #7d7d7d;
+  font-size: 14px;
+}
+
+.badge-mise-en-avant {
+  background-color: gold;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.bio-parent {
+  margin-bottom: 5px;
+  flex-grow: 1;
+}
+
+.btn-voir-profil {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.btn-voir-profil:hover {
+  background-color: #b2ebf2;
+}
+
+.login {
+  margin: auto;
 }
 
 .login_bloc {
@@ -107,6 +323,114 @@ main {
   color: #dbeafe;
   margin-bottom: 2%;
 }
+.inscrie_bloc p {
+  font-family: Arsenal, sans-serif;
+  color: black;
+}
+
+.main_profil {
+  background-color: #E6EBE6;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  height: 100%;
+  padding: 10%;
+}
+
+.bg_main_color {
+  background-color: #E6EBE6;
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: contain;
+  height: 100%;
+  padding: 10%;
+}
+
+.formWrapper {
+  width: 80%;
+  margin: auto;
+}
+
+.bg_main_form .blocArticle {
+  background-color: rgba(152, 187, 218, 0.94);
+}
+.bg_main_form .blocArticle h1 {
+  font-size: x-large;
+}
+.bg_main_form .formWrapper {
+  width: 72%;
+  margin: 30px auto 30px;
+}
+.bg_main_form .formWrapper input {
+  all: unset;
+  background-color: #ecf0f1;
+  border: white 1px solid;
+  border-radius: 8px;
+  margin: 10px;
+  width: 100%;
+  height: 3vh;
+}
+.bg_main_form .formWrapper select {
+  all: unset;
+  background-color: #ecf0f1;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px;
+  width: 70%;
+  color: rgba(9, 9, 9, 0.7);
+}
+.bg_main_form .formWrapper button {
+  all: unset;
+  background-color: #04769A;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 12px;
+  color: white;
+}
+
+.blocArticle {
+  background-color: rgba(152, 187, 218, 0.94);
+}
+.blocArticle h1 {
+  font-size: x-large;
+}
+
+.civil {
+  width: 10%;
+}
+
+.formWrapper {
+  width: 72%;
+  margin: 30px auto 30px;
+}
+.formWrapper input {
+  all: unset;
+  background-color: #ecf0f1;
+  border: white 1px solid;
+  border-radius: 8px;
+  margin: 10px;
+  width: 100%;
+  height: 3vh;
+}
+.formWrapper select {
+  all: unset;
+  background-color: #ecf0f1;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px;
+  width: 70%;
+  color: rgba(9, 9, 9, 0.7);
+}
+.formWrapper button {
+  all: unset;
+  background-color: #04769A;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 12px;
+  color: white;
+}
 
 footer {
   background-color: rgb(4, 118, 154);
@@ -119,28 +443,31 @@ footer {
   align-items: center;
   color: white;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .footer-div-logo {
   margin: auto;
   margin-top: 60px;
+  text-align: center;
 }
 
-.logo {
+#logo_footer {
   font-family: "Baloo Tammudu 2", sans-serif;
   font-size: 40px;
   color: rgb(218, 137, 130);
 }
 
 .icone_rs {
-  width: 40%;
+  width: 30px;
   display: inline-block;
   margin: 0 10px;
 }
 
 .social-icons {
-  width: 25%;
-  margin-top: 35px;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .footer-div {
@@ -153,13 +480,140 @@ footer {
 }
 
 .footer-div h4 {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .footer-div p {
   font-family: "Baloo Tammudu 2", sans-serif;
   font-size: 14px;
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    width: 80%;
+  }
+  .footer-content .footer-div .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-content .footer-div .social-icons li {
+    width: 20%;
+  }
+  .footer-div {
+    margin-top: 8%;
+    width: 70%;
+    text-align: center;
+  }
+  .footer-div p {
+    margin-top: 2%;
+  }
+  #logo_footer {
+    font-size: 32px;
+  }
+}
+/* ---------------------------------- RESPONSIVE TELEPHONE -------------------------------- */
+@media screen and (max-width: 779px) {
+  #bg_navBar {
+    justify-content: space-between;
+  }
+  #bg_navBar #burgerMenu {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+  #burgerMenu li {
+    margin: 7px 0;
+    background-color: #ffffff;
+    padding: 2px 25px;
+    transition: transform 0.5s ease;
+  }
+  #burgerMenu li:nth-of-type(2) {
+    background-color: #ffffff;
+  }
+  #burgerMenu li:nth-of-type(3) {
+    background-color: #ffffff;
+  }
+  .flex_burger {
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 60px;
+    background-color: rgba(80, 111, 144, 0.87);
+    height: 90vh;
+  }
+  .flex_burger.active {
+    display: flex;
+    align-items: center;
+    height: 60vh;
+    margin: auto;
+    z-index: 2000;
+  }
+  .flex_burger.active .flex {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+  .flex_burger.active li {
+    display: block;
+  }
+  #logo_MIMIR {
+    margin-left: 20px;
+    position: relative;
+  }
+  #logo_MIMIR a {
+    font-family: "Baloo Tammudu 2", sans-serif;
+    font-weight: bold;
+    color: rgb(218, 137, 130);
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+  .burger-menu.active + nav {
+    display: flex;
+  }
+}
+/* ---------------------------------- RESPONSIVE TELEPHONE -------------------------------- */
+@media screen and (max-width: 779px) {
+  .flex_home {
+    flex-direction: column;
+    padding: 5%;
+  }
+  .flex_home article {
+    width: 100%;
+  }
+  .flex_home h1 {
+    font-size: 2rem;
+  }
+  .blocArticle {
+    width: 90%;
+    margin-top: 20px;
+  }
+  .blocArticle .text_black h2 {
+    font-size: large;
+  }
+  .carte-nounou {
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .entete-nounou {
+    flex-direction: column;
+    align-items: center;
+  }
+  .photo-nounou {
+    margin-bottom: 15px;
+  }
+  .badge-mise-en-avant {
+    position: static;
+    margin-top: 10px;
+  }
+  .btn-voir-profil {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -19,7 +19,7 @@ class UserParentController extends AbstractController
 {
 
     #[Route('/user/parent/insert', name: 'insert_parent')]
-    public function insertParent(Request $request, EntityManagerInterface $entityManager, UserParentRepository $userParentRepository, Security $security): Response
+    public function insertParent(Request $request, UserParentRepository $userParentRepository, EntityManagerInterface $entityManager, Security $security): Response
     {
 
         // Vérifiez si l'utilisateur n'est pas connecté
@@ -41,7 +41,7 @@ class UserParentController extends AbstractController
 
         if ($existingParent) {
             // Vérifier si certains champs du UserParent sont déjà remplis
-            if (!empty($existingParent->getPhone()) || !empty($existingParent->getAddress())) {
+            if (!empty($existingParent->getCivility())) {
                 // Si les champs ne sont pas vides, rediriger vers le profil du parent
                 return $this->redirectToRoute('home');
             }
@@ -73,14 +73,17 @@ class UserParentController extends AbstractController
         return $this->render('public/page/parent/new_parent.html.twig', ['userParentForm' => $userParentForm->createView()]);
     }
 
-    #[Route('/user/parent/profil', name: 'parent_profil')]
-    public function parent_by_id(UserParentRepository $userParentRepository): Response
+    #[Route('/user/parent/profil/{id}', name: 'parent_profil', requirements: ['id' => '\d+'])]
+    public function parent_by_id(int $id,UserParentRepository $userParentRepository): Response
     {
-        $currentUser = $this->getUser();
-        return $this->render('public/page/parent/parent_profil.html.twig', ['user' => $currentUser, 'parent' => $userParentRepository->findOneBy(['user' => $currentUser])]);
+        $userParent = $userParentRepository->find($id);
+        if (!$userParent) {
+            throw $this->createNotFoundException('Parent introuvable');
+        }
+        return $this->render('public/page/parent/parent_profil.html.twig', [ 'parent' => $userParent]);
     }
 
-    #[Route('/user/update', name: 'parent_update')]
+    #[Route('/user/parent/update', name: 'parent_update')]
     public function updateParent(Request $request, EntityManagerInterface $entityManager, UserParentRepository $userParentRepository, Security $security): Response
     {
         $currentUser = $this->getUser();
@@ -112,11 +115,16 @@ class UserParentController extends AbstractController
         }
 
         try {
+            // Supprime l'entité userParent de la base de données
             $entityManager->remove($userParent);
+            // Applique les changements dans la base de données (exécute la suppression)
             $entityManager->flush();
+            // Déconnecte l'utilisateur en cours de la session
             $security->logout(false);
+            // Ajoute un message flash de succès à afficher à l'utilisateur
             $this->addFlash('success',$userParent->getUser()->getFirstname().'supprimer avec succes');
         }catch (\Exception $e){
+            // Si une erreur se produit, elle est capturée et un message flash d'erreur est ajouté
             $this->addFlash('error', $e->getMessage());
         }
         return $this->redirectToRoute('home');

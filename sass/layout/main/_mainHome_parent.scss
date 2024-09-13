@@ -1,0 +1,65 @@
+
+
+.carte-parent {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  width: 90%;
+  max-width: 1200px; /* Garantit pour qu'il ne s'étend pas trop large sur les grands écrans */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap
+}
+
+.entete-parent {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.info-parent {
+  flex-grow: 1;
+}
+
+.localisation-parent {
+  color: #7d7d7d;
+  font-size: 14px;
+}
+
+.badge-mise-en-avant {
+  background-color: gold;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.bio-parent {
+  margin-bottom: 5px;
+  flex-grow: 1;
+}
+
+.btn-voir-profil {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.btn-voir-profil:hover {
+  background-color: #b2ebf2;
+}
+

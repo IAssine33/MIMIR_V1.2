@@ -1,0 +1,27 @@
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    width: 80%;
+    .footer-div .social-icons{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      li{
+        width: 20%;
+      }
+    }
+  }
+
+  .footer-div {
+    margin-top: 8%;
+    width: 70%;
+    text-align: center;
+    p{
+      margin-top: 2%;
+    }
+  }
+  #logo_footer {
+    font-size: 32px;
+  }
+}

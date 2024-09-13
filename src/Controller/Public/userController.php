@@ -24,18 +24,7 @@ class userController extends AbstractController
             $password = $userForm->get('password')->getData();
             $hashedPassword = $passwordHasher->hashPassword($user, $password);
             $user->setPassword($hashedPassword);
-        /*
-            // Définir le rôle et la redirection en fonction du type d'utilisateur
-            if ($type === 'parent') {
-                $user->setRoles(['ROLE_PARENT']);
-                $redirectRoute = 'app_login';
-            } elseif ($type === 'sitter') {
-                $user->setRoles(['ROLE_SITTER']);
-                $redirectRoute = 'app_login';
-            } else {
-                throw new \InvalidArgumentException('Invalid user type');
-            }
-        */
+
             try {
                 $entityManager->persist($user);
                 $entityManager->flush();
