@@ -1,10 +1,13 @@
 .login{
-  margin: auto;
+  /* haut | horizontal | bas */
+  margin: 10% auto 0;
+  width: 40%;
 }
 
 .login_bloc{
-  width: 70%;
+  width: 75%;
   margin: auto;
+
 
   h1{
     font-family: Arsenal, sans-serif;
@@ -13,9 +16,12 @@
     font-weight: bold;
   }
 }
+.form_bloc{
+  margin: 10%;
+}
 
 .input_bloc{
-  margin-top: 35%;
+  margin-top: 10%;
 }
 
 .div_input{
@@ -34,8 +40,13 @@
   height: 35px;
 }
 
-.div_button button{
+.div_button{
+  margin-top: 10%;
+ button{
   padding: 5px 35px ;
+   cursor: pointer;
+   font-size: medium;
+ }
 }
 
 .inscrie_bloc {
