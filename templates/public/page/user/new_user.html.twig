@@ -3,32 +3,28 @@
 {% block main %}
 <main class="bg_main_form">
     <section class="flex">
-        <article class="blocArticle">
+        <article class="blocArticle_newUser">
             <h1>Créez votre profil </h1>
-            <div class="formWrapper">
+            <div class="formWrapper_newUser">
                 {{
                 form_start(userForm)
                 }}
-                <div class="">
-                    <div class="">
+                <div class="div_formUser">
+                    <div class="div_firstname">
                         {{ form_row(userForm.firstname) }}
                     </div>
-                    <div class="">
+                    <div class="div_lastname">
                         {{ form_row(userForm.lastname) }}
                     </div>
-                    <div class="">
-                    </div>
-                    <div class="">
+                    <div class="div_email">
                         {{ form_row(userForm.email) }}
                     </div>
-                    <div class="">
+                    <div class="div_password">
                         {{ form_row(userForm.password) }}
                     </div>
-                    <div class="">
                         {{
                         form_end(userForm)
                         }}
-                    </div>
                 </div>
             </div>
         </article>

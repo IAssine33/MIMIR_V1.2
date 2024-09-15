@@ -36,8 +36,9 @@ class UserType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmation mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe:'],
                 'invalid_message' => 'Les mots de passe ne correspondent pas.',
+                'required' => true,
             ])
             // Pour hasher le mot de passe directement dans l'EntityType :
            /* ->add('password', PasswordType::class, [

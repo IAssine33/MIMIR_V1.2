@@ -1,11 +1,11 @@
 .login{
+  background-color: rgb(197, 225, 238);
   /* haut | horizontal | bas */
   margin: 10% auto 0;
-  width: 40%;
+  width: 30%;
 }
 
 .login_bloc{
-  width: 75%;
   margin: auto;
 
 
@@ -49,15 +49,15 @@
  }
 }
 
-.inscrie_bloc {
+.inscrit_bloc {
   width: 30%;
   margin: 5% auto;
-  background-color: rgba(4, 118, 154, 0.92);
+  background-color: rgba(4, 118, 154);
   padding: 2%;
 
   h1 {
     font-family: Arsenal, sans-serif;
-    color: #dbeafe;
+    color: #ffffff;
     margin-bottom: 2%;
   }
   p{

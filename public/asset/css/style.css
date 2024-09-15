@@ -275,13 +275,13 @@ section.flex {
 }
 
 .login {
+  background-color: rgb(197, 225, 238);
   /* haut | horizontal | bas */
   margin: 10% auto 0;
-  width: 40%;
+  width: 30%;
 }
 
 .login_bloc {
-  width: 75%;
   margin: auto;
 }
 .login_bloc h1 {
@@ -323,18 +323,18 @@ section.flex {
   font-size: medium;
 }
 
-.inscrie_bloc {
+.inscrit_bloc {
   width: 30%;
   margin: 5% auto;
-  background-color: rgba(4, 118, 154, 0.92);
+  background-color: rgb(4, 118, 154);
   padding: 2%;
 }
-.inscrie_bloc h1 {
+.inscrit_bloc h1 {
   font-family: Arsenal, sans-serif;
-  color: #dbeafe;
+  color: #ffffff;
   margin-bottom: 2%;
 }
-.inscrie_bloc p {
+.inscrit_bloc p {
   font-family: Arsenal, sans-serif;
   color: black;
 }
@@ -362,46 +362,61 @@ section.flex {
   margin: auto;
 }
 
-.bg_main_form .blocArticle {
-  background-color: rgba(152, 187, 218, 0.94);
+.bg_main_form .blocArticle_newUser {
+  background-color: rgb(197, 225, 238);
+  border-radius: 30px;
+  text-align: center;
+  height: 30%;
+  font-family: "Baloo Tammudu 2", sans-serif;
+  color: black;
+  padding: 2%;
 }
-.bg_main_form .blocArticle h1 {
+@media screen and (min-width: 780px) {
+  .bg_main_form .blocArticle_newUser {
+    width: 40%;
+  }
+}
+.bg_main_form .blocArticle_newUser h1 {
   font-size: x-large;
 }
-.bg_main_form .formWrapper {
+.bg_main_form .formWrapper_newUser {
   width: 72%;
-  margin: 30px auto 30px;
+  margin: 70px auto 0;
 }
-.bg_main_form .formWrapper input {
+.bg_main_form .formWrapper_newUser .div_formUser {
+  width: 100%;
+}
+.bg_main_form .formWrapper_newUser .div_formUser input {
   all: unset;
   background-color: #ecf0f1;
   border: white 1px solid;
   border-radius: 8px;
-  margin: 10px;
+  margin: 1% auto 9%;
   width: 100%;
   height: 3vh;
 }
-.bg_main_form .formWrapper select {
+.bg_main_form .formWrapper_newUser select {
   all: unset;
   background-color: #ecf0f1;
   border: 1px solid white;
   border-radius: 4px;
-  padding: 10px;
-  margin: 20px;
+  padding: 1%;
+  margin: 1% auto 9%;
   width: 70%;
   color: rgba(9, 9, 9, 0.7);
 }
-.bg_main_form .formWrapper button {
+.bg_main_form .formWrapper_newUser button {
   all: unset;
   background-color: #04769A;
   border: 1px solid white;
   border-radius: 4px;
   padding: 12px;
   color: white;
+  cursor: pointer;
 }
 
 .blocArticle {
-  background-color: rgba(152, 187, 218, 0.94);
+  background-color: rgb(197, 225, 238);
 }
 .blocArticle h1 {
   font-size: x-large;
@@ -538,7 +553,7 @@ footer {
   #burgerMenu li {
     margin: 7px 0;
     background-color: #ffffff;
-    padding: 2px 25px;
+    padding: 1px 21px;
     transition: transform 0.5s ease;
   }
   #burgerMenu li:nth-of-type(2) {
@@ -552,7 +567,7 @@ footer {
     position: absolute;
     width: 100%;
     left: 0;
-    top: 60px;
+    top: 57px;
     background-color: rgba(80, 111, 144, 0.87);
     height: 90vh;
   }
@@ -624,6 +639,21 @@ footer {
   .btn-voir-profil {
     width: 100%;
     margin-top: 10px;
+  }
+}
+/* ---------------------------------- RESPONSIVE TELEPHONE -------------------------------- */
+@media screen and (max-width: 779px) {
+  .inscrit_bloc {
+    width: 90%;
+    margin: 15% auto;
+    background-color: rgb(4, 118, 154);
+    padding: 10%;
+  }
+}
+/* ---------------------------------- RESPONSIVE TELEPHONE -------------------------------- */
+@media screen and (max-width: 779px) {
+  .blocArticle_newUser {
+    width: 90%;
   }
 }
 

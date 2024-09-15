@@ -13,6 +13,7 @@
 @import "layout/main/main_login";
 @import "layout/main/main_profil";
 @import "layout/main/mainEdit_sitter";
+@import "layout/main/mainEdit_parent";
 @import "layout/main/main_newUser";
 @import "layout/main/main_newParent";
 @import "layout/footer";
@@ -20,7 +21,10 @@
 // Responsive Telephone
 @import "responsive/mobile/responsiveFooter";
 @import "responsive/mobile/responsiveHeader";
-@import "responsive/mobile/responsiveMainHome";
+@import "responsive/mobile/main/responsiveMainHome";
+@import "responsive/mobile/main/responsiveMainLogin";
+@import "responsive/mobile/main/responsiveMainNewUser";
+@import "responsive/mobile/main/responsiveMainEdit_Parent";
 
 
 // Responsive Tablette
